@@ -2,8 +2,16 @@ import {
   StyledInput,
   dropInName,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
+import { useAppDispatch } from '../../../app/hooks';
+import { useState } from 'react';
+import { getNameInput } from '../../../features/user/userSlice';
 
 export const SignInNameInput = () => {
+  const [userName, setUserName] = useState<string>('');
+  const dispatch = useAppDispatch();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setUserName(e.currentTarget.value);
+  const pushUserNameToStore = () => dispatch(getNameInput(userName));
   return (
     <StyledInput
       variants={dropInName}
@@ -12,6 +20,9 @@ export const SignInNameInput = () => {
       exit="exit"
       type="text"
       placeholder="User Name"
+      value={userName}
+      onChange={handleChange}
+      onBlur={pushUserNameToStore}
     />
   );
 };
