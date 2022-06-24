@@ -1,7 +1,8 @@
 import { StyledButton } from './buttons';
 import styled from 'styled-components';
+import githubImage from '../../../assets/githubImg.svg';
 
-const dropIn = {
+export const dropIn = {
   hidden: {
     y: '-100vh',
     opacity: 0,
@@ -13,7 +14,7 @@ const dropIn = {
     y: '0',
     opacity: 1,
     transition: {
-      delay: 1.3,
+      delay: 1.5,
       duration: 0.05,
       type: 'spring',
       damping: 25,
@@ -26,17 +27,12 @@ const dropIn = {
   },
 };
 
-const StyledSignInButton = styled(StyledButton)`
-  background-color: red;
+export const StyledGithubButton = styled(StyledButton)`
+  background-color: #27272a;
+  background-image: url(${githubImage});
+  text-align: right;
+  padding-right: 3rem;
+  background-repeat: no-repeat;
+  background-position-x: 20%;
+  background-position-y: 50%;
 `;
-
-export const SignInButton = () => {
-  return (
-    <StyledSignInButton
-      variants={dropIn}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-    ></StyledSignInButton>
-  );
-};

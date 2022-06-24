@@ -6,4 +6,5 @@ export const StyledButton = styled(motion.button)`
   border: none;
   padding: 0.5rem;
   color: #fff;
+  cursor: pointer;
 `;
