@@ -1,14 +1,12 @@
-import { useState } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AnimatedRoutes from './components/animatedRoutes/animatedRoutes';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <h2>Hello Vite</h2>
-    </div>
+    <Router>
+      <AnimatedRoutes />
+    </Router>
   );
 }
 
