@@ -5,9 +5,7 @@ type SignInWrapperProps = {
 };
 
 const SignInWrapper = ({ children }: SignInWrapperProps) => {
-  return (
-    <StyledSignInWrapper key="signInWrapper">{children}</StyledSignInWrapper>
-  );
+  return <StyledSignInWrapper>{children}</StyledSignInWrapper>;
 };
 
 export default SignInWrapper;

@@ -1,13 +1,13 @@
 import {
   dropIn,
   StyledSignInButton,
-} from '../../styledComponents/landingPage/buttons/signInButton';
+} from '../../../styledComponents/landingPage/buttons/signInButton';
 
-export type SignInButtonProps = {
+export type SignUpButtonProps = {
   children: string;
 };
 
-export const SignInButton = ({ children }: SignInButtonProps) => {
+export const SignUpButton = ({ children }: SignUpButtonProps) => {
   return (
     <StyledSignInButton
       variants={dropIn}

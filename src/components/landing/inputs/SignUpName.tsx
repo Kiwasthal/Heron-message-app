@@ -3,7 +3,7 @@ import {
   dropInName,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 
-export const UserNameInput = () => {
+export const SignUpNameInput = () => {
   return (
     <StyledInput
       variants={dropInName}

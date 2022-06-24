@@ -3,7 +3,7 @@ import {
   dropInEmail,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 
-export const UserEmailInput = () => {
+export const SignUpEmailInput = () => {
   return (
     <StyledInput
       variants={dropInEmail}
