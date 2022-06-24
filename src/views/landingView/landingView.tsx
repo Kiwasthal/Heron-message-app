@@ -1,8 +1,11 @@
-import { LandingHolder } from '../../styledComponents/landingPage/landingHolder';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import LandingHolder from '../../components/landing/LandingHolder';
+import SignModal from '../../components/landing/SignModal';
+import SignInWrapper from '../../components/landing/SignInWrapper';
+import { UserNameInput } from '../../components/landing/inputs/UserNameInput';
+import { UserEmailInput } from '../../components/landing/inputs/UserEmailInput';
 import { SignInButton } from '../../components/buttons/SignInButton';
-import { SignModal } from '../../styledComponents/landingPage/signModal';
 
 type SignInProps = {
   handleClick: () => void;
@@ -20,14 +23,14 @@ function LandingView() {
       <SignModal>
         <AnimatePresence>
           {isVisible && (
-            <motion.div key="signInModal">
+            <SignInWrapper>
               <h1>Sign In</h1>
-              <input type="text" placeholder="username" />
-              <input type="email" placeholder="email" />
+              <UserNameInput />
+              <UserEmailInput />
               <SignInButton>Sign In</SignInButton>
               <p>Haven't signed up?</p>
               <LeaveButton handleClick={changeToSignUp} />
-            </motion.div>
+            </SignInWrapper>
           )}
           {!isVisible && (
             <motion.div key="signUpModal">
