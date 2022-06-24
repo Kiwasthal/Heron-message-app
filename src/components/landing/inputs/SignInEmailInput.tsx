@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useAppDispatch } from '../../../app/hooks';
-import { getEmailInput } from '../../../features/user/userSlice';
+import { getEmailInput } from '../../../features/user/manualSlice';
 import {
   StyledInput,
   dropInEmail,

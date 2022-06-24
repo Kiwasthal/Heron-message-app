@@ -4,7 +4,7 @@ import {
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 import { useAppDispatch } from '../../../app/hooks';
 import { useState } from 'react';
-import { getNameInput } from '../../../features/user/userSlice';
+import { getNameInput } from '../../../features/user/manualSlice';
 
 export const SignInNameInput = () => {
   const [userName, setUserName] = useState<string>('');

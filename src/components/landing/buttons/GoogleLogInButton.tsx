@@ -2,7 +2,8 @@ import {
   StyledGoogleButton,
   dropIn,
 } from '../../../styledComponents/landingPage/buttons/googleButton';
-
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../../../firebase/firebase';
 export type GoogleButtonProps = {
   children: string;
 };
