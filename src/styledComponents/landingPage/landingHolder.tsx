@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
 
-const fadeIn = {
+export const fadeIn = {
   hidden: {
     opacity: 0.3,
     transition: {
@@ -12,7 +12,7 @@ const fadeIn = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 5,
+      duration: 3,
     },
   },
   exit: {
@@ -23,25 +23,11 @@ const fadeIn = {
   },
 };
 
-const StyledLandingHolder = styled(motion.div)`
+export const StyledLandingHolder = styled(motion.div)`
   height: 100vh;
   width: 100vw;
-  background-color: #6d28d9;
+  background-color: #fef08a;
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  overflow: hidden;
 `;
-
-type LandingProps = {
-  children: React.ReactNode;
-};
-
-export const LandingHolder = ({ children }: LandingProps) => {
-  return (
-    <StyledLandingHolder
-      variants={fadeIn}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-    >
-      {children}
-    </StyledLandingHolder>
-  );
-};

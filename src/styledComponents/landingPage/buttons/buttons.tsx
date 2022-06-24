@@ -7,7 +7,3 @@ export const StyledButton = styled(motion.button)`
   padding: 0.5rem;
   color: #fff;
 `;
-
-export type ButtonProps = {
-  children: string;
-};
