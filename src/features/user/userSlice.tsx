@@ -1,5 +1,6 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, isAnyOf } from '@reduxjs/toolkit';
 import { auth } from '../../firebase/firebase';
+import { signUp } from './manualSlice';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 type InitialState = {
@@ -38,6 +39,14 @@ const userSlice = createSlice({
       state.loading = true;
       state.userName = auth.currentUser?.displayName;
       state.userEmail = auth.currentUser?.email;
+      state.userImage = auth.currentUser?.photoURL;
+    });
+    builder.addMatcher(isAnyOf(signUp.pending), state => {
+      state.loading = true;
+    });
+    builder.addMatcher(isAnyOf(signUp.fulfilled), state => {
+      state.loading = false;
+      state.userName = 'John';
     });
   },
 });
