@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import React from 'react';
 import styled from 'styled-components';
 
 export const fadeIn = {
@@ -16,9 +15,9 @@ export const fadeIn = {
     },
   },
   exit: {
-    opacity: 0,
+    opacity: 1,
     transition: {
-      delay: 1,
+      delay: 0,
       duration: 0.3,
     },
   },
