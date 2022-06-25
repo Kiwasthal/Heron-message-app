@@ -24,7 +24,7 @@ export const dropLeft = {
     y: '100vh',
     opacity: 0,
     transition: {
-      delay: 12,
+      delay: 0.5,
     },
   },
 };

@@ -18,6 +18,7 @@ export const fadeIn = {
   exit: {
     opacity: 0,
     transition: {
+      delay: 1,
       duration: 0.3,
     },
   },

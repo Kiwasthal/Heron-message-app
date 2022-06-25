@@ -4,14 +4,16 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 type InitialState = {
   userName: undefined | null | string;
-  userEmail: string;
+  userEmail: undefined | null | string;
+  userImage: undefined | null | string;
   loading: boolean;
   errors: string;
 };
 
 const initialState: InitialState = {
-  userName: '',
-  userEmail: '',
+  userName: null,
+  userEmail: null,
+  userImage: null,
   loading: false,
   errors: '',
 };
@@ -35,6 +37,7 @@ const userSlice = createSlice({
     builder.addCase(signInWithGoogle.fulfilled, state => {
       state.loading = true;
       state.userName = auth.currentUser?.displayName;
+      state.userEmail = auth.currentUser?.email;
     });
   },
 });
