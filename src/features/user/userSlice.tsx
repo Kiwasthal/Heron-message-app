@@ -1,12 +1,6 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  isAnyOf,
-  PayloadAction,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, isAnyOf } from '@reduxjs/toolkit';
 import { auth } from '../../firebase/firebase';
-import { signUp } from './manualSlice';
-import { getNameInput } from './manualSlice';
+import { signUp, logIn } from './manualSlice';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 type InitialState = {
@@ -38,11 +32,7 @@ export const signInWithGoogle = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    getName: (state, action: PayloadAction<string>) => {
-      state.userName = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(signInWithGoogle.pending, state => {
       state.loading = true;
@@ -53,15 +43,22 @@ const userSlice = createSlice({
       state.userEmail = auth.currentUser?.email;
       state.userImage = auth.currentUser?.photoURL;
     });
+    builder.addCase(logIn.pending, state => {
+      state.loading = true;
+    });
+    builder.addCase(logIn.fulfilled, state => {
+      state.userEmail = auth.currentUser?.email;
+      state.userName = auth.currentUser?.displayName;
+    });
     builder.addMatcher(isAnyOf(signUp.pending), state => {
       state.loading = true;
     });
     builder.addMatcher(isAnyOf(signUp.fulfilled), state => {
       state.loading = false;
       state.userEmail = auth.currentUser?.email;
+      state.userName = auth.currentUser?.displayName;
     });
   },
 });
 
 export default userSlice.reducer;
-export const { getName } = userSlice.actions;
