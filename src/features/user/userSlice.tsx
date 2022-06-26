@@ -1,12 +1,19 @@
-import { createSlice, createAsyncThunk, isAnyOf } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  createAsyncThunk,
+  isAnyOf,
+  PayloadAction,
+} from '@reduxjs/toolkit';
 import { auth } from '../../firebase/firebase';
 import { signUp } from './manualSlice';
+import { getNameInput } from './manualSlice';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 type InitialState = {
   userName: undefined | null | string;
   userEmail: undefined | null | string;
   userImage: undefined | null | string;
+  userPassword: string;
   loading: boolean;
   errors: string;
 };
@@ -15,6 +22,7 @@ const initialState: InitialState = {
   userName: null,
   userEmail: null,
   userImage: null,
+  userPassword: '',
   loading: false,
   errors: '',
 };
@@ -30,7 +38,11 @@ export const signInWithGoogle = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    getName: (state, action: PayloadAction<string>) => {
+      state.userName = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(signInWithGoogle.pending, state => {
       state.loading = true;
@@ -46,9 +58,10 @@ const userSlice = createSlice({
     });
     builder.addMatcher(isAnyOf(signUp.fulfilled), state => {
       state.loading = false;
-      state.userName = 'John';
+      state.userEmail = auth.currentUser?.email;
     });
   },
 });
 
 export default userSlice.reducer;
+export const { getName } = userSlice.actions;

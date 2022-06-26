@@ -1,6 +1,12 @@
 import { auth } from '../../firebase/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import firebase from 'firebase/app';
+import { createUserWithEmailAndPassword, UserCredential } from 'firebase/auth';
+import {
+  createSlice,
+  createAsyncThunk,
+  PayloadAction,
+  createAction,
+} from '@reduxjs/toolkit';
 
 type InitialState = {
   userNameInput: string;
@@ -16,13 +22,17 @@ const initialState: InitialState = {
   userConfirmPassword: '',
 };
 
-export const signUp = createAsyncThunk('user/signUp', async () => {
-  await createUserWithEmailAndPassword(
-    auth,
-    'imthekoul@gmail.com',
-    'imthekoul@gmail.com'
-  );
-});
+type UserSubmitProps = {
+  email: string;
+  password: string;
+};
+
+export const signUp = createAsyncThunk(
+  'user/signUp',
+  async ({ email, password }: UserSubmitProps) => {
+    await createUserWithEmailAndPassword(auth, email, password);
+  }
+);
 
 const manualSlice = createSlice({
   name: 'manual',
