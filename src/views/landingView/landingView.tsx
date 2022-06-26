@@ -7,7 +7,7 @@ import SignUpWrapper from '../../components/landing/SignUpWrapper';
 import ChangeView from '../../components/landing/ChangeView';
 import { ModalHeader } from '../../components/landing/text/ModalHeader';
 import { SignInEmailInput } from '../../components/landing/inputs/SignInEmailInput';
-import { SignInPasswordInput } from '../../components/landing/inputs/SignInNameInput';
+import { SignInPasswordInput } from '../../components/landing/inputs/SignInPasswordInput';
 import { SignInButton } from '../../components/landing/buttons/SignInButton';
 import { LogInWithGoogleButton } from '../../components/landing/buttons/GoogleLogInButton';
 import { LogInWithGithubButton } from '../../components/landing/buttons/GithubLogIn';
