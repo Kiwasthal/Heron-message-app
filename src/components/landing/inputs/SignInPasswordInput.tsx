@@ -4,13 +4,14 @@ import {
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 import { useAppDispatch } from '../../../app/hooks';
 import { useState } from 'react';
+import { getPasswordInput } from '../../../features/user/manualSlice';
 
 export const SignInPasswordInput = () => {
   const [userPassword, setUserPassword] = useState<string>('');
   const dispatch = useAppDispatch();
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-  //   setUserName(e.currentTarget.value);
-  // const pushUserNameToStore = () => dispatch(getNameInput(userName));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setUserPassword(e.currentTarget.value);
+  const pushUserNameToStore = () => dispatch(getPasswordInput(userPassword));
   return (
     <StyledInput
       variants={dropInName}
@@ -19,6 +20,9 @@ export const SignInPasswordInput = () => {
       exit="exit"
       type="password"
       placeholder="Enter you Password"
+      value={userPassword}
+      onChange={handleChange}
+      onBlur={pushUserNameToStore}
     />
   );
 };
