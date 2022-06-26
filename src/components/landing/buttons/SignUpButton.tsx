@@ -4,7 +4,7 @@ import {
   dropIn,
   StyledSignInButton,
 } from '../../../styledComponents/landingPage/buttons/signInButton';
-import { getName } from '../../../features/user/userSlice';
+import { catalogueUser } from '../../../features/user/manualSlice';
 
 export type SignUpButtonProps = {
   children: string;
@@ -21,10 +21,15 @@ export const SignUpButton = ({ children }: SignUpButtonProps) => {
   const userData = {
     email: userEmailInput,
     password: userPasswordInput,
+    name: userNameInput,
+  };
+  const firestoreData = {
+    name: userNameInput,
+    email: userEmailInput,
   };
   const submitUser = () => {
     dispatch(signUp(userData));
-    dispatch(getName(userNameInput));
+    dispatch(catalogueUser(firestoreData));
   };
   return (
     <StyledSignInButton
