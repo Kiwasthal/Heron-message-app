@@ -1,38 +1,16 @@
+import { dropLeft } from '../../../styledComponents/heronMain/nav/variants/navbarVariant';
+import UserElement from './NavElements/UserElement';
+import GlobalElement from './NavElements/GlobalElemen';
 import { StyledNav } from '../../../styledComponents/heronMain/nav/styledNavbar';
-
-const dropLeft = {
-  hidden: {
-    x: '100vh',
-    opacity: 0,
-    transition: {
-      delay: 0,
-    },
-  },
-  visible: {
-    x: '0',
-    opacity: 1,
-    transition: {
-      duration: 0.25,
-      type: 'spring',
-      damping: 20,
-      stiffness: 400,
-      delay: 1,
-    },
-  },
-  exit: {
-    x: '100vh',
-    opacity: 0,
-    transition: {
-      delay: 0.5,
-    },
-  },
-};
+import MessageElement from './NavElements/MessageElement';
+import ThemeElement from './NavElements/ThemeElement';
+import SettingsElement from './NavElements/SettingsElement';
 
 type NavbarProps = {
   children: React.ReactNode;
 };
 
-const Navbar = ({ children }: NavbarProps) => {
+const Navbar = () => {
   return (
     <StyledNav
       variants={dropLeft}
@@ -40,7 +18,11 @@ const Navbar = ({ children }: NavbarProps) => {
       animate="visible"
       exit="exit"
     >
-      {children}
+      <UserElement />
+      <GlobalElement />
+      <MessageElement />
+      <ThemeElement />
+      <SettingsElement />
     </StyledNav>
   );
 };
