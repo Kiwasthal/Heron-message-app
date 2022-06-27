@@ -2,6 +2,7 @@ import { auth } from '../../firebase/firebase';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
 } from 'firebase/auth';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
@@ -62,6 +63,10 @@ export const logIn = createAsyncThunk(
     await signInWithEmailAndPassword(auth, email, password);
   }
 );
+
+export const logOut = createAsyncThunk('user/logOut', async () => {
+  await signOut(auth);
+});
 
 export const catalogueUser = createAsyncThunk(
   'user/catalogue',

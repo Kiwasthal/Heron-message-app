@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, isAnyOf } from '@reduxjs/toolkit';
 import { auth } from '../../firebase/firebase';
-import { signUp, logIn } from './manualSlice';
+import { signUp, logIn, logOut } from './manualSlice';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 type InitialState = {
@@ -45,6 +45,11 @@ const userSlice = createSlice({
     });
     builder.addCase(logIn.pending, state => {
       state.loading = true;
+    });
+    builder.addCase(logOut.fulfilled, state => {
+      state.userName = auth.currentUser?.displayName;
+      state.userEmail = auth.currentUser?.email;
+      state.userImage = auth.currentUser?.photoURL;
     });
     builder.addCase(logIn.fulfilled, state => {
       state.userEmail = auth.currentUser?.email;
