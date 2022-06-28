@@ -54,6 +54,7 @@ const userSlice = createSlice({
     builder.addCase(logIn.fulfilled, state => {
       state.userEmail = auth.currentUser?.email;
       state.userName = auth.currentUser?.displayName;
+      state.userImage = auth.currentUser?.photoURL;
     });
     builder.addMatcher(isAnyOf(signUp.pending), state => {
       state.loading = true;
@@ -62,6 +63,7 @@ const userSlice = createSlice({
       state.loading = false;
       state.userEmail = auth.currentUser?.email;
       state.userName = auth.currentUser?.displayName;
+      state.userImage = auth.currentUser?.photoURL;
     });
   },
 });

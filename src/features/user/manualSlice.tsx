@@ -8,6 +8,7 @@ import {
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { db } from '../../firebase/firebase';
 import { addDoc, collection } from 'firebase/firestore';
+import placeholderIMage from '../../assets/userPlaceHolder.svg';
 
 type InitialState = {
   userNameInput: string;
@@ -42,13 +43,14 @@ type CatalogueUserProps = {
 export const signUp = createAsyncThunk(
   'user/signUp',
   async ({ email, password, name }: UserSignUpProps) => {
-    let updateDisplayName = {
+    let updateUserInfo = {
       displayName: name,
+      photoURL: placeholderIMage,
     };
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       if (auth.currentUser !== null)
-        await updateProfile(auth.currentUser, updateDisplayName).catch(err =>
+        await updateProfile(auth.currentUser, updateUserInfo).catch(err =>
           console.log(err)
         );
     } catch (err) {
