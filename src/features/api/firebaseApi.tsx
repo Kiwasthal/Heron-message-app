@@ -12,25 +12,28 @@ import {
 import { db } from '../../firebase/firebase';
 
 type Message = {
-  name: string;
-  profilePicUrl: string;
-  text: string;
-  timestamp: Timestamp;
+  name: string | null | undefined;
+  profilePicUrl: string | null | undefined;
+  text: string | null | undefined;
 };
 
-type QueryArg = {
-  name: string;
-  profilePicUrl: string;
-  text: string;
-  id: string;
-  timestamp: Timestamp;
-}[];
+type QueryMessageProps = {
+  name?: string;
+  profilePicUrl?: string;
+  text?: string;
+  timestamp?: Timestamp;
+  id?: string;
+};
+
+type QueryResponse = QueryMessageProps[];
+
+type ResultType = 'resolved' | 'failed';
 
 export const firebaseApi = createApi({
   reducerPath: 'firebaseApi',
   baseQuery: fakeBaseQuery(),
   endpoints: builder => ({
-    fetchGlobalMessages: builder.query<QueryArg, void>({
+    fetchGlobalMessages: builder.query<QueryResponse, void>({
       async queryFn() {
         try {
           let recentMessagesQuery = await getDocs(
@@ -40,7 +43,7 @@ export const firebaseApi = createApi({
               limit(20)
             )
           );
-          let messages: QueryArg = [];
+          let messages: QueryResponse = [];
           recentMessagesQuery?.forEach(doc =>
             messages.push({ ...doc.data(), id: doc.id })
           );
@@ -50,16 +53,16 @@ export const firebaseApi = createApi({
         }
       },
     }),
-    addGlobalMessage: builder.mutation({
-      async queryFn(data) {
+    addGlobalMessage: builder.mutation<ResultType, Message>({
+      async queryFn(messageData: Message) {
         try {
           await addDoc(collection(db, 'globalMessages'), {
-            ...data,
+            ...messageData,
             timestamp: serverTimestamp(),
           });
           return { data: 'resolved' };
         } catch (e) {
-          console.log(e);
+          return { data: 'failed' };
         }
       },
     }),
