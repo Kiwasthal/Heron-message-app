@@ -7,7 +7,6 @@ import userImgPlaceHolder from '../../../../assets/userPlaceHolder.svg';
 const UserElement = () => {
   let userImageSrc = useAppSelector(state => state.user.userImage);
   if (!userImageSrc) userImageSrc = userImgPlaceHolder;
-
   return (
     <LeftMostNavElement>
       <UserIcon src={userImageSrc} />

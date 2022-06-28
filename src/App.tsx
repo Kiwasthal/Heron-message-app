@@ -3,6 +3,7 @@ import AnimatedRoutes from './components/animatedRoutes/animatedRoutes';
 import './App.css';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from './theme/defaultTheme';
+// import { useAuthState } from 'react-firebase-hooks/auth';
 import { useState } from 'react';
 
 function App() {

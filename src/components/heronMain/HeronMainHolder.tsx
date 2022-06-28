@@ -4,8 +4,8 @@ type HeronMainProps = {
   children: React.ReactNode;
 };
 
-function HeronMainHolder({ children }: HeronMainProps) {
+const HeronMainHolder = ({ children }: HeronMainProps) => {
   return <StyledHeronMainHolder>{children}</StyledHeronMainHolder>;
-}
+};
 
 export default HeronMainHolder;

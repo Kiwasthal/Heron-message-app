@@ -37,10 +37,11 @@ export const ElementTag = styled.p`
 `;
 
 export const UserIcon = styled.img`
-  height: 50px;
-  width: 50px;
+  height: 43px;
+  width: 43px;
   justify-self: center;
   border-radius: 50px;
+  align-self: center;
 `;
 
 export const NavFontIcon = styled(FontAwesomeIcon)`

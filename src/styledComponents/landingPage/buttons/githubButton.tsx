@@ -28,7 +28,7 @@ export const dropIn = {
 };
 
 export const StyledGithubButton = styled(StyledButton)`
-  background-color: #27272a;
+  background-color: ${props => props.theme.main};
   background-image: url(${githubImage});
   text-align: right;
   padding-right: 3rem;

@@ -7,9 +7,7 @@ type ProtectedRouteProps = {
 };
 
 const ProtectedRoute = ({ user, children }: ProtectedRouteProps) => {
-  if (!user) {
-    return <Navigate to="/" replace />;
-  }
+  if (!user) return <Navigate to="/" replace />;
   return children;
 };
 

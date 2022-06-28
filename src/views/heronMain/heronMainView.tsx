@@ -1,21 +1,22 @@
 import HeronMainHolder from '../../components/heronMain/HeronMainHolder';
 import Navbar from '../../components/heronMain/Navbar/Navbar';
-import { UserContainer } from '../../components/heronMain/Navbar/UserContainer/UserContainer';
 import Footer from '../../components/heronMain/Footer/Footer';
-import { UserImage } from '../../components/heronMain/Navbar/UserContainer/UserImage';
-import { UserNameHolder } from '../../components/heronMain/Navbar/UserContainer/UserNameHolder';
+import GlobalMessanger from '../../components/heronMain/GlobalMessanger/GlobalMessanger';
+import { StyledAppFeatures } from '../../styledComponents/heronMain/styledMainHolder';
+import { logOut } from '../../features/user/manualSlice';
+import { useAppDispatch } from '../../app/hooks';
 
 const HeronMainView = () => {
+  const dispatch = useAppDispatch();
+  const handleLogout = () => dispatch(logOut());
   return (
     <HeronMainHolder>
-      <Navbar>
-        <UserContainer>
-          <UserNameHolder />
-          <UserImage />
-        </UserContainer>
-      </Navbar>
+      <Navbar />
+      <StyledAppFeatures>
+        <GlobalMessanger />
+      </StyledAppFeatures>
       <Footer>
-        <div>Hey </div>
+        <button onClick={handleLogout}>Logout</button>
       </Footer>
     </HeronMainHolder>
   );

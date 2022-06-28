@@ -6,7 +6,12 @@ export const StyledHeronMainHolder = styled(motion.div)`
   width: 100vw;
   background-color: #fef08a;
   display: grid;
-  grid-template-columns: 15% 1fr;
-  grid-auto-rows: 6% 1fr 6%;
+  grid-auto-rows: 10% 1fr 6%;
   overflow: hidden;
+`;
+
+export const StyledAppFeatures = styled.div`
+  grid-area: 2 / 1 / 3 / 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 `;
