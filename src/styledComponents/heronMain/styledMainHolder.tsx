@@ -13,5 +13,7 @@ export const StyledHeronMainHolder = styled(motion.div)`
 export const StyledAppFeatures = styled.div`
   grid-area: 2 / 1 / 3 / 3;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  max-height: 84vh;
+  grid-template-columns: 50% 50%;
+  align-items: center;
 `;
