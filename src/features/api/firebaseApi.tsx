@@ -2,14 +2,17 @@ import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import {
   addDoc,
   collection,
+  doc,
   getDocs,
   limit,
-  onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
   Timestamp,
+  where,
 } from 'firebase/firestore';
+import uniqid from 'uniqid/index';
 import { db } from '../../firebase/firebase';
 
 type Message = {
@@ -56,11 +59,34 @@ export const firebaseApi = createApi({
       },
       providesTags: ['message'],
     }),
+
+    sendFriendRequest: builder.mutation({
+      async queryFn(requestData) {
+        try {
+          let userRef = doc(db, 'users', `${requestData.friendEmail}`);
+          await setDoc(
+            userRef,
+            {
+              friends: [
+                {
+                  name: requestData.userName,
+                  status: false,
+                },
+              ],
+            },
+            { merge: true }
+          );
+
+          return { data: 'resolved' };
+        } catch {}
+      },
+    }),
     addGlobalMessage: builder.mutation<ResultType, Message>({
       async queryFn(messageData: Message) {
         try {
           await addDoc(collection(db, 'globalMessages'), {
             ...messageData,
+            id: uniqid(),
             timestamp: serverTimestamp(),
           });
           return { data: 'resolved' };
@@ -74,5 +100,8 @@ export const firebaseApi = createApi({
   }),
 });
 
-export const { useFetchGlobalMessagesQuery, useAddGlobalMessageMutation } =
-  firebaseApi;
+export const {
+  useFetchGlobalMessagesQuery,
+  useSendFriendRequestMutation,
+  useAddGlobalMessageMutation,
+} = firebaseApi;
