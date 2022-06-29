@@ -4,6 +4,7 @@ import {
   collection,
   getDocs,
   limit,
+  onSnapshot,
   orderBy,
   query,
   serverTimestamp,
@@ -17,7 +18,7 @@ type Message = {
   text: string | null | undefined;
 };
 
-type QueryMessageProps = {
+export type QueryMessageProps = {
   name?: string;
   profilePicUrl?: string;
   text?: string;
@@ -27,31 +28,33 @@ type QueryMessageProps = {
 
 type QueryResponse = QueryMessageProps[];
 
-type ResultType = 'resolved' | 'failed';
+type ResultType = 'resolved' | 'failed ';
 
 export const firebaseApi = createApi({
   reducerPath: 'firebaseApi',
   baseQuery: fakeBaseQuery(),
+  tagTypes: ['message'],
   endpoints: builder => ({
     fetchGlobalMessages: builder.query<QueryResponse, void>({
       async queryFn() {
         try {
-          let recentMessagesQuery = await getDocs(
-            query(
-              collection(db, 'globalMessages'),
-              orderBy('timestamp', 'desc'),
-              limit(20)
-            )
+          let q = query(
+            collection(db, 'globalMessages'),
+            orderBy('timestamp', 'desc'),
+            limit(20)
           );
+          let recentMessagesQuery = await getDocs(q);
           let messages: QueryResponse = [];
           recentMessagesQuery?.forEach(doc =>
             messages.push({ ...doc.data(), id: doc.id })
           );
+
           return { data: messages };
         } catch (e) {
           return { error: e };
         }
       },
+      providesTags: ['message'],
     }),
     addGlobalMessage: builder.mutation<ResultType, Message>({
       async queryFn(messageData: Message) {
@@ -62,9 +65,11 @@ export const firebaseApi = createApi({
           });
           return { data: 'resolved' };
         } catch (e) {
-          return { data: 'failed' };
+          return { error: 'failed ' };
         }
       },
+
+      invalidatesTags: ['message'],
     }),
   }),
 });
