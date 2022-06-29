@@ -24,7 +24,7 @@ const GlobalMessageView = (props: GlobalMessageProps) => {
           .reverse()
           .map((message, index) => (
             <GlobalMessageField
-              key={index}
+              key={message.id}
               text={message.text}
               image={message.profilePicUrl}
               name={message.name}

@@ -33,13 +33,11 @@ const Navbar = () => {
       animate="visible"
       exit="exit"
     >
-      <AnimatePresence>
-        <FriendsElement value={controls} />
-        <GlobalElement value={controls} />
-        <MessageElement value={controls} />
-        <ThemeElement value={controls} />
-        <SettingsElement value={controls} />
-      </AnimatePresence>
+      <FriendsElement value={controls} />
+      <GlobalElement value={controls} />
+      <MessageElement value={controls} />
+      <ThemeElement value={controls} />
+      <SettingsElement value={controls} />
     </StyledNav>
   );
 };
