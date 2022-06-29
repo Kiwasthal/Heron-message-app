@@ -1,6 +1,7 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import {
   addDoc,
+  arrayUnion,
   collection,
   doc,
   getDocs,
@@ -10,6 +11,7 @@ import {
   serverTimestamp,
   setDoc,
   Timestamp,
+  updateDoc,
   where,
 } from 'firebase/firestore';
 import uniqid from 'uniqid/index';
@@ -64,18 +66,12 @@ export const firebaseApi = createApi({
       async queryFn(requestData) {
         try {
           let userRef = doc(db, 'users', `${requestData.friendEmail}`);
-          await setDoc(
-            userRef,
-            {
-              friends: [
-                {
-                  name: requestData.userName,
-                  status: false,
-                },
-              ],
-            },
-            { merge: true }
-          );
+          await updateDoc(userRef, {
+            friends: arrayUnion({
+              name: requestData.userName,
+              status: false,
+            }),
+          });
 
           return { data: 'resolved' };
         } catch {}

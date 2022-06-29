@@ -37,4 +37,9 @@ const navSlice = createSlice({
 });
 
 export default navSlice.reducer;
-export const { showGlobalChat, showFriendsElement } = navSlice.actions;
+export const {
+  showGlobalChat,
+  showFriendsElement,
+  openFriendsModal,
+  closeFriendsModal,
+} = navSlice.actions;
