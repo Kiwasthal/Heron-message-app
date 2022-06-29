@@ -31,6 +31,12 @@ export type QueryMessageProps = {
   id?: string;
 };
 
+export type FriendRequestProps = {
+  userName: string | undefined | null;
+  userEmail: string | undefined | null;
+  friendEmail?: string;
+};
+
 type QueryResponse = QueryMessageProps[];
 
 type ResultType = 'resolved' | 'failed ';
@@ -61,20 +67,21 @@ export const firebaseApi = createApi({
       },
       providesTags: ['message'],
     }),
-
-    sendFriendRequest: builder.mutation({
-      async queryFn(requestData) {
+    sendFriendRequest: builder.mutation<ResultType, FriendRequestProps>({
+      async queryFn(requestData: FriendRequestProps) {
         try {
           let userRef = doc(db, 'users', `${requestData.friendEmail}`);
           await updateDoc(userRef, {
             friends: arrayUnion({
               name: requestData.userName,
+              email: requestData.userEmail,
               status: false,
             }),
           });
-
           return { data: 'resolved' };
-        } catch {}
+        } catch (e) {
+          return { error: 'failed' };
+        }
       },
     }),
     addGlobalMessage: builder.mutation<ResultType, Message>({
