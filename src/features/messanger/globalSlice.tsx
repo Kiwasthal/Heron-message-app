@@ -1,16 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { QuerySnapshot } from 'firebase/firestore';
-import { db } from '../../firebase/firebase';
 
 type InitialStateProps = {
   globalChatInput: string | null;
-  displayMessages: [] | QuerySnapshot;
   loading: boolean;
 };
 
 const initialState: InitialStateProps = {
   globalChatInput: null,
-  displayMessages: [],
   loading: false,
 };
 

@@ -7,9 +7,11 @@ import { AnimatePresence } from 'framer-motion';
 import GlobalMessageView from './GlobalMessageView';
 import GlobalTextArea from './GlobalTextArea';
 import GlobalMessageButton from './GlobalMessageButton';
+import { MutableRefObject, useRef } from 'react';
 
 function GlobalMessanger() {
   const isShowing = useAppSelector(state => state.nav.globalChat);
+  const scrollBottom = useRef<HTMLDivElement | null>(null);
   return (
     <AnimatePresence>
       {isShowing && (
@@ -19,9 +21,9 @@ function GlobalMessanger() {
           animate="visible"
           exit="exit"
         >
-          <GlobalMessageView />
+          <GlobalMessageView scroll={scrollBottom} />
           <GlobalTextArea />
-          <GlobalMessageButton />
+          <GlobalMessageButton scroll={scrollBottom} />
         </StyledGlobalMessangerContainer>
       )}
     </AnimatePresence>
