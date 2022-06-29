@@ -2,10 +2,15 @@ import { NavFontIcon } from '../../../../styledComponents/heronMain/nav/navEleme
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { StyledNavElement } from '../../../../styledComponents/heronMain/nav/navElements/styledElements';
 import { ElementTag } from '../../../../styledComponents/heronMain/nav/navElements/styledElements';
+import { AnimationControls } from 'framer-motion';
 
-const MessageElement = () => {
+type ElementProps = {
+  value: AnimationControls;
+};
+
+const MessageElement = (props: ElementProps) => {
   return (
-    <StyledNavElement>
+    <StyledNavElement custom={1} animate={props.value}>
       <NavFontIcon icon={faMessage} />
       <ElementTag>Message</ElementTag>
     </StyledNavElement>

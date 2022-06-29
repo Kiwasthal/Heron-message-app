@@ -1,16 +1,31 @@
 import { dropLeft } from '../../../styledComponents/heronMain/nav/variants/navbarVariant';
-import UserElement from './NavElements/UserElement';
-import GlobalElement from './NavElements/GlobalElemen';
 import { StyledNav } from '../../../styledComponents/heronMain/nav/styledNavbar';
+import FriendsElement from './NavElements/FriendsElement';
+import GlobalElement from './NavElements/GlobalElemen';
 import MessageElement from './NavElements/MessageElement';
 import ThemeElement from './NavElements/ThemeElement';
 import SettingsElement from './NavElements/SettingsElement';
-
-type NavbarProps = {
-  children: React.ReactNode;
-};
+import { useEffect } from 'react';
+import { AnimatePresence, useAnimation } from 'framer-motion';
 
 const Navbar = () => {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.set(i => ({
+      opacity: 1,
+      y: '-40vh',
+    }));
+  });
+
+  useEffect(() => {
+    controls.start(i => ({
+      opacity: 1,
+      y: '0vh',
+      transition: { delay: i * 0.5 },
+    }));
+  }, []);
+
   return (
     <StyledNav
       variants={dropLeft}
@@ -18,11 +33,13 @@ const Navbar = () => {
       animate="visible"
       exit="exit"
     >
-      <UserElement />
-      <GlobalElement />
-      <MessageElement />
-      <ThemeElement />
-      <SettingsElement />
+      <AnimatePresence>
+        <FriendsElement value={controls} />
+        <GlobalElement value={controls} />
+        <MessageElement value={controls} />
+        <ThemeElement value={controls} />
+        <SettingsElement value={controls} />
+      </AnimatePresence>
     </StyledNav>
   );
 };

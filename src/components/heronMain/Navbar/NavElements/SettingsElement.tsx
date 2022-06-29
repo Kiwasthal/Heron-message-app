@@ -2,10 +2,15 @@ import { NavFontIcon } from '../../../../styledComponents/heronMain/nav/navEleme
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { RightMostNavElement } from '../../../../styledComponents/heronMain/nav/navElements/styledElements';
 import { ElementTag } from '../../../../styledComponents/heronMain/nav/navElements/styledElements';
+import { AnimationControls } from 'framer-motion';
 
-const SettingsElement = () => {
+type ElementProps = {
+  value: AnimationControls;
+};
+
+const SettingsElement = (props: ElementProps) => {
   return (
-    <RightMostNavElement>
+    <RightMostNavElement custom={3} animate={props.value}>
       <NavFontIcon icon={faGear} />
       <ElementTag>Settings</ElementTag>
     </RightMostNavElement>
