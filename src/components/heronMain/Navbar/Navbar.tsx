@@ -6,7 +6,7 @@ import MessageElement from './NavElements/MessageElement';
 import ThemeElement from './NavElements/ThemeElement';
 import SettingsElement from './NavElements/SettingsElement';
 import { useEffect } from 'react';
-import { AnimatePresence, useAnimation } from 'framer-motion';
+import { useAnimation } from 'framer-motion';
 
 const Navbar = () => {
   const controls = useAnimation();

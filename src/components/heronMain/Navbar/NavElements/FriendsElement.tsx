@@ -12,6 +12,7 @@ type ElementProps = {
 };
 
 const FriendsElement = (props: ElementProps) => {
+  const userEmail = useAppSelector(state => state.user.userEmail);
   const isActive = useAppSelector(state => state.nav.friendsElement);
   const dispatch = useAppDispatch();
   const showFriends = () => dispatch(showFriendsElement());
@@ -21,6 +22,8 @@ const FriendsElement = (props: ElementProps) => {
       <NavFontIcon icon={faUserFriends} />
       <ElementTag>Friends</ElementTag>
       {isActive && <FriendsDropContainer />}
+      {}
+      {}
     </LeftMostNavElement>
   );
 };
