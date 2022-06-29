@@ -10,10 +10,12 @@ export const StyledHeronMainHolder = styled(motion.div)`
   overflow: hidden;
 `;
 
-export const StyledAppFeatures = styled.div`
-  grid-area: 2 / 1 / 3 / 3;
+export const StyledAppFeatures = styled(motion.div)`
+  grid-area: 2 / 1 / 4 / 3;
   display: grid;
-  max-height: 84vh;
+  overflow: hidden;
+  width: 100vw;
+  max-height: 100vh;
   grid-template-columns: 50% 50%;
   align-items: center;
 `;

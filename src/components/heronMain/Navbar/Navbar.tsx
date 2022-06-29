@@ -12,11 +12,11 @@ const Navbar = () => {
   const controls = useAnimation();
 
   useEffect(() => {
-    controls.set(i => ({
+    controls.set({
       opacity: 1,
       y: '-40vh',
-    }));
-  });
+    });
+  }, []);
 
   useEffect(() => {
     controls.start(i => ({

@@ -17,14 +17,13 @@ export const dropFmodal = {
       type: 'spring',
       damping: 20,
       stiffness: 400,
-      delay: 1,
     },
   },
   exit: {
-    x: '100vh',
+    x: '-100vh',
     opacity: 0,
     transition: {
-      delay: 0.5,
+      delay: 0.1,
     },
   },
 };
@@ -39,4 +38,15 @@ export const StyledFriendsModal = styled(motion.div)`
   border-radius: 20px;
   background-color: violet;
   position: relative;
+`;
+
+export const CloseFriendsModal = styled.div`
+  color: #fff;
+  position: absolute;
+  font-size: 30px;
+  right: 0;
+  top: 0;
+  padding: 20px;
+  transform: rotate(45deg);
+  cursor: pointer;
 `;

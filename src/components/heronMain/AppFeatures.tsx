@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { StyledAppFeatures } from '../../styledComponents/heronMain/styledMainHolder';
 
 type AppFeaturesProps = {
-  children: ReactNode;
+  children: ReactNode | null;
 };
 
 export default function AppFeatures({ children }: AppFeaturesProps) {
