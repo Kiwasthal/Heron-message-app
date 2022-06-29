@@ -1,6 +1,6 @@
-export const dropLeft = {
+export const dropFriends = {
   hidden: {
-    x: '100vh',
+    x: '30vh',
     opacity: 0,
     transition: {
       delay: 0,
@@ -16,11 +16,14 @@ export const dropLeft = {
       stiffness: 400,
     },
   },
+  hover: {
+    scale: 1.1,
+  },
   exit: {
-    x: '100vh',
+    x: '30vh',
     opacity: 0,
     transition: {
-      delay: 0.5,
+      delay: 1,
     },
   },
 };

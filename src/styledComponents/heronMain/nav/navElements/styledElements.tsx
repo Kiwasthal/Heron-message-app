@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 
 export const StyledNavElement = styled(motion.div)`
+  position: relative;
   display: grid;
   height: 100%;
   grid-template-rows: 50% 50%;
