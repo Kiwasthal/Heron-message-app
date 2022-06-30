@@ -3,6 +3,7 @@ import manualSlice from '../features/user/manualSlice';
 import userSlice from '../features/user/userSlice';
 import navSlice from '../features/nav/navSlice';
 import globalSlice from '../features/messanger/globalSlice';
+import privateSlice from '../features/messanger/privateSlice';
 import { firebaseApi } from '../features/api/firebaseApi';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
@@ -13,6 +14,7 @@ const store = configureStore({
     manual: manualSlice,
     nav: navSlice,
     global: globalSlice,
+    private: privateSlice,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(firebaseApi.middleware),
