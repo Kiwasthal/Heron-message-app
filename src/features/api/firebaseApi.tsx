@@ -4,6 +4,7 @@ import {
   arrayUnion,
   collection,
   doc,
+  FieldValue,
   getDocs,
   limit,
   orderBy,
@@ -35,6 +36,11 @@ export type FriendRequestProps = {
   userName: string | undefined | null;
   userEmail: string | undefined | null;
   friendEmail?: string;
+};
+
+export type AddFriendData = {
+  userEmail: string | undefined | null;
+  friendEmail: string;
 };
 
 type QueryResponse = QueryMessageProps[];
@@ -70,12 +76,43 @@ export const firebaseApi = createApi({
     sendFriendRequest: builder.mutation<ResultType, FriendRequestProps>({
       async queryFn(requestData: FriendRequestProps) {
         try {
-          let userRef = doc(db, 'users', `${requestData.friendEmail}`);
+          let friendRef = doc(db, 'users', `${requestData.friendEmail}`);
+          let userRef = doc(db, 'users', `${requestData.userEmail}`);
           await updateDoc(userRef, {
+            friends: arrayUnion({
+              email: requestData.friendEmail,
+              status: false,
+            }),
+          });
+          await updateDoc(friendRef, {
             friends: arrayUnion({
               name: requestData.userName,
               email: requestData.userEmail,
               status: false,
+            }),
+          });
+          return { data: 'resolved' };
+        } catch (e) {
+          return { error: 'failed' };
+        }
+      },
+    }),
+    acceptFriendRequest: builder.mutation<ResultType, AddFriendData>({
+      async queryFn(addFriendData: AddFriendData) {
+        try {
+          const friendRef = doc(db, 'users', `${addFriendData.friendEmail}`);
+          const userRef = doc(db, 'users', `${addFriendData.userEmail}`);
+
+          await updateDoc(userRef, {
+            acceptedFriends: arrayUnion({
+              email: addFriendData.friendEmail,
+              status: true,
+            }),
+          });
+          await updateDoc(friendRef, {
+            acceptedFriends: arrayUnion({
+              email: addFriendData.userEmail,
+              status: true,
             }),
           });
           return { data: 'resolved' };
@@ -107,4 +144,5 @@ export const {
   useFetchGlobalMessagesQuery,
   useSendFriendRequestMutation,
   useAddGlobalMessageMutation,
+  useAcceptFriendRequestMutation,
 } = firebaseApi;
