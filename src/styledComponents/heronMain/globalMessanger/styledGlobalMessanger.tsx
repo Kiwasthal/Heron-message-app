@@ -32,6 +32,7 @@ export const StyledGlobalMessangerContainer = styled(motion.div)`
   width: 60%;
   display: grid;
   grid-template-columns: 75% 25%;
+  grid-template-rows: 92% 8%;
   align-self: center;
   justify-self: center;
 `;

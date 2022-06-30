@@ -38,6 +38,10 @@ export const StyledFriendsModal = styled(motion.div)`
   border-radius: 20px;
   background-color: violet;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const CloseFriendsModal = styled.div`
@@ -49,4 +53,9 @@ export const CloseFriendsModal = styled.div`
   padding: 20px;
   transform: rotate(45deg);
   cursor: pointer;
+`;
+
+export const StyledAddFriendInput = styled.input`
+  height: 20%;
+  width: 80%;
 `;
