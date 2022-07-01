@@ -22,10 +22,10 @@ export const useFriendRequests = () => {
   const [friendRequests] = useCollectionData(q);
 
   useEffect(() => {
-    //Passing the friend List array to the store on every update//
     const friendList = friendRequests;
-    if (friendList) dispatch(getUserPendingFriendList(friendList[0].friends));
-    if (friendList)
+    if (friendList && friendList.length > 0)
+      dispatch(getUserPendingFriendList(friendList[0].friends));
+    if (friendList && friendList.length > 0)
       dispatch(getUserAcceptedFriendList(friendList[0].acceptedFriends));
   }, [friendRequests]);
 };
