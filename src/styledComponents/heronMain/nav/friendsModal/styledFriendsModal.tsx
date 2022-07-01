@@ -33,7 +33,7 @@ export const StyledFriendsModal = styled(motion.div)`
   height: 20vh;
   width: 20vw;
   background-color: red;
-  top: -30%;
+  top: 00%;
   left: 3%;
   border-radius: 20px;
   background-color: violet;
@@ -42,6 +42,7 @@ export const StyledFriendsModal = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  grid-area: 2/ 1 / 3 / 2;
 `;
 
 export const CloseFriendsModal = styled.div`

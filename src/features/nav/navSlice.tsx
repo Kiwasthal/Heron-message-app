@@ -4,12 +4,14 @@ type InitialStateProps = {
   globalChat: boolean;
   friendsElement: boolean;
   friendsModal: boolean;
+  chatBar: boolean;
 };
 
 const initialState: InitialStateProps = {
   globalChat: false,
   friendsElement: false,
   friendsModal: false,
+  chatBar: false,
 };
 
 const navSlice = createSlice({
@@ -28,6 +30,12 @@ const navSlice = createSlice({
     closeFriendsModal: state => {
       state.friendsModal = false;
     },
+    showChatbar: state => {
+      state.chatBar = true;
+    },
+    hideChatbar: state => {
+      state.chatBar = false;
+    },
     closeAllInterfaces: state => {
       state.globalChat = false;
       state.friendsElement = false;
@@ -42,4 +50,6 @@ export const {
   showFriendsElement,
   openFriendsModal,
   closeFriendsModal,
+  showChatbar,
+  hideChatbar,
 } = navSlice.actions;

@@ -15,7 +15,6 @@ export const LogInWithGithubButton = ({ children }: GithubButtonProps) => {
       animate="visible"
       exit="exit"
     >
-      {' '}
       {children}
     </StyledGithubButton>
   );

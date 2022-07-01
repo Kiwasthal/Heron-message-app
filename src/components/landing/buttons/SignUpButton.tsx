@@ -27,7 +27,7 @@ export const SignUpButton = ({ children }: SignUpButtonProps) => {
     name: userNameInput,
     email: userEmailInput,
   };
-  const submitUser = () => {
+  const submitUser = async () => {
     dispatch(signUp(userData));
     dispatch(catalogueUser(firestoreData));
   };
