@@ -4,16 +4,13 @@ import {
   arrayUnion,
   collection,
   doc,
-  FieldValue,
   getDocs,
   limit,
   orderBy,
   query,
   serverTimestamp,
-  setDoc,
   Timestamp,
   updateDoc,
-  where,
 } from 'firebase/firestore';
 import uniqid from 'uniqid/index';
 import { db } from '../../firebase/firebase';
@@ -22,6 +19,14 @@ type Message = {
   name: string | null | undefined;
   profilePicUrl: string | null | undefined;
   text: string | null | undefined;
+};
+
+type PrivateMessage = {
+  chatId: string | null;
+  text: string | null | undefined;
+  name: string | null | undefined;
+  email: string | null | undefined;
+  profilePicUrl: string | null | undefined;
 };
 
 export type QueryMessageProps = {
@@ -102,19 +107,23 @@ export const firebaseApi = createApi({
         try {
           const friendRef = doc(db, 'users', `${addFriendData.friendEmail}`);
           const userRef = doc(db, 'users', `${addFriendData.userEmail}`);
+          const chatId = uniqid();
 
           await updateDoc(userRef, {
             acceptedFriends: arrayUnion({
               email: addFriendData.friendEmail,
               status: true,
+              chatId,
             }),
           });
           await updateDoc(friendRef, {
             acceptedFriends: arrayUnion({
               email: addFriendData.userEmail,
               status: true,
+              chatId,
             }),
           });
+
           return { data: 'resolved' };
         } catch (e) {
           return { error: 'failed' };
@@ -137,6 +146,23 @@ export const firebaseApi = createApi({
 
       invalidatesTags: ['message'],
     }),
+    addPrivateMessage: builder.mutation<ResultType, PrivateMessage>({
+      async queryFn(messageData: PrivateMessage) {
+        try {
+          await addDoc(
+            collection(db, `privateMessages/${messageData.chatId}/messages`),
+            {
+              ...messageData,
+              id: uniqid(),
+              timestamp: serverTimestamp(),
+            }
+          );
+          return { data: 'resolved' };
+        } catch (e) {
+          return { error: 'failed ' };
+        }
+      },
+    }),
   }),
 });
 
@@ -145,4 +171,5 @@ export const {
   useSendFriendRequestMutation,
   useAddGlobalMessageMutation,
   useAcceptFriendRequestMutation,
+  useAddPrivateMessageMutation,
 } = firebaseApi;
