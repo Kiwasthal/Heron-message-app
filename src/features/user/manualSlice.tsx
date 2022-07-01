@@ -7,8 +7,8 @@ import {
 } from 'firebase/auth';
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { db } from '../../firebase/firebase';
-import { addDoc, collection } from 'firebase/firestore';
-import placeholderIMage from '../../assets/userPlaceHolder.svg';
+import { doc, setDoc } from 'firebase/firestore';
+import placeholderImage from '../../assets/userPlaceHolder.svg';
 
 type InitialState = {
   userNameInput: string;
@@ -45,7 +45,7 @@ export const signUp = createAsyncThunk(
   async ({ email, password, name }: UserSignUpProps) => {
     let updateUserInfo = {
       displayName: name,
-      photoURL: placeholderIMage,
+      photoURL: placeholderImage,
     };
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -73,10 +73,10 @@ export const logOut = createAsyncThunk('user/logOut', async () => {
 export const catalogueUser = createAsyncThunk(
   'user/catalogue',
   async ({ email, name }: CatalogueUserProps) => {
-    const userCollection = collection(db, 'users');
-    await addDoc(userCollection, {
+    await setDoc(doc(db, 'users', `${email}`), {
       name: name,
       email: email,
+      photoURL: placeholderImage,
     });
   }
 );
