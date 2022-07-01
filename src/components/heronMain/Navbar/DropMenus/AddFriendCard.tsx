@@ -16,7 +16,6 @@ const AddFriendCard = (props: AddFriendProps) => {
     userEmail,
     friendEmail: props.data.email,
   };
-  console.log(props.data.email);
 
   const addFriendHandler = () => {
     sendFriendRequest(addFriendData);

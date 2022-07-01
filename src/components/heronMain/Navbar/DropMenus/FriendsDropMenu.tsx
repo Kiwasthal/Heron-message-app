@@ -5,20 +5,29 @@ import { AddFriendsElement } from './DropContent';
 import AddFriendCard from './AddFriendCard';
 
 export const FriendsDropContainer = () => {
-  const userEmail = useAppSelector(state => state.user.userEmail);
+  const acceptedFriendList = useAppSelector(
+    state => state.private.acceptedUserFriends
+  );
   const friendList = useAppSelector(state => state.private.userFriends);
   const dispatch = useAppDispatch();
   const clearDisplay = () => dispatch(showFriendsElement());
+
   return (
     <StyledDropContainer onMouseLeave={clearDisplay}>
       <AddFriendsElement />
       {friendList &&
         friendList.length > 0 &&
         friendList.map(friendRequest => {
+          let condition = true;
           if (!friendRequest.name) return;
-          return (
-            <AddFriendCard key={friendRequest.name} data={friendRequest} />
-          );
+          acceptedFriendList &&
+            acceptedFriendList.filter(friend => {
+              if (friend.email === friendRequest.email) condition = false;
+            });
+          if (condition)
+            return (
+              <AddFriendCard key={friendRequest.name} data={friendRequest} />
+            );
         })}
     </StyledDropContainer>
   );

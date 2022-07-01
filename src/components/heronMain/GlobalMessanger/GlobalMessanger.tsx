@@ -7,7 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 import GlobalMessageView from './GlobalMessageView';
 import GlobalTextArea from './GlobalTextArea';
 import GlobalMessageButton from './GlobalMessageButton';
-import { MutableRefObject, useRef } from 'react';
+import { useRef } from 'react';
 
 function GlobalMessanger() {
   const isShowing = useAppSelector(state => state.nav.globalChat);

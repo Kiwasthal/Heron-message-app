@@ -13,8 +13,6 @@ const GlobalMessageButton = (props: ButtonProps) => {
   const userImage = useAppSelector(state => state.user.userImage);
   const [addMessage] = useAddGlobalMessageMutation();
 
-  useEffect(() => {});
-
   const messageData = {
     text: messageText,
     name: userName,
