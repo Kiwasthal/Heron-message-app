@@ -20,6 +20,7 @@ import { StyledNavigateWrapper } from '../../styledComponents/landingPage/text/n
 import { SignTextHolder } from '../../components/landing/text/SignTextHolder';
 import { useAppDispatch } from '../../app/hooks';
 import { logOut } from '../../features/user/manualSlice';
+import { clearStore } from '../../features/user/userSlice';
 
 function LandingView() {
   const [isVisible, setIsVisible] = useState<boolean>(true);
@@ -29,6 +30,7 @@ function LandingView() {
 
   useEffect(() => {
     dispatch(logOut());
+    dispatch(clearStore());
   }, []);
 
   return (

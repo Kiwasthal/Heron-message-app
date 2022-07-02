@@ -23,8 +23,8 @@ const combinedReducer = combineReducers({
 });
 
 const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
-  if (action.type === 'user/clearUser') state = {} as RootState;
-  if (action.type === 'private/clearPrivate') state = {} as RootState;
+  if (action.type === 'user/clearStore') state = {} as RootState;
+  // if (action.type === 'private/clearPrivate') state = {} as RootState;
   return combinedReducer(state, action);
 };
 

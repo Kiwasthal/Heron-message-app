@@ -29,7 +29,9 @@ const privateSlice = createSlice({
   name: 'private',
   initialState,
   reducers: {
-    clearPrivate: state => {},
+    clearPrivate: state => {
+      state = initialState;
+    },
     getFriendInput: (state, action: PayloadAction<string>) => {
       state.friendInput = action.payload;
     },

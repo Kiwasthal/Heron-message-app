@@ -9,6 +9,7 @@ import SentMessage from './messages/SentMessage';
 const ChatBox = () => {
   const chatRoom = useAppSelector(state => state.private.currentChatroom);
   const userEmail = useAppSelector(state => state.user.userEmail);
+  console.log(chatRoom);
 
   let q = query(
     collection(db, `privateMessages/${chatRoom}/messages`),

@@ -8,15 +8,9 @@ import AppFeatures from '../../components/heronMain/AppFeatures';
 import { logOut } from '../../features/user/manualSlice';
 import { useAppDispatch } from '../../app/hooks';
 import { clearStore } from '../../features/user/userSlice';
-import { clearPrivate } from '../../features/messanger/privateSlice';
 
 const HeronMainView = () => {
   const dispatch = useAppDispatch();
-  const handleLogout = () => {
-    dispatch(clearStore());
-    dispatch(clearPrivate());
-    dispatch(logOut());
-  };
 
   return (
     <HeronMainHolder>
@@ -27,7 +21,14 @@ const HeronMainView = () => {
         <GlobalMessanger />
       </AppFeatures>
       <Footer>
-        <button onClick={handleLogout}>Logout</button>
+        <button
+          onClick={async () => {
+            await dispatch(logOut);
+            dispatch(clearStore());
+          }}
+        >
+          Logout
+        </button>
       </Footer>
     </HeronMainHolder>
   );

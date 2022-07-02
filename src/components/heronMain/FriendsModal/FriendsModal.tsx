@@ -58,9 +58,15 @@ const FriendsModal = () => {
   const sendRequest = () => {
     if (inputValue === '') return;
     else if (userEmail === inputValue) setErrMsg('You can not add yourslef!');
-    else if (userAcceptedFriends.some(friend => friend.email === inputValue))
+    else if (
+      userAcceptedFriends &&
+      userAcceptedFriends.some(friend => friend.email === inputValue)
+    )
       setErrMsg(`You are already friends with ${inputValue} `);
-    else if (userFriends.some(friend => friend.email === inputValue))
+    else if (
+      userFriends &&
+      userFriends.some(friend => friend.email === inputValue)
+    )
       setErrMsg(`You have already sent a request to ${inputValue} `);
     else validateRequest(inputValue);
   };

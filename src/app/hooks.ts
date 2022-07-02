@@ -6,6 +6,8 @@ import {
   getUserPendingFriendList,
   getUserAcceptedFriendList,
 } from '../features/messanger/privateSlice';
+import { logOut } from '../features/user/manualSlice';
+import { clearStore } from '../features/user/userSlice';
 import { db } from '../firebase/firebase';
 import type { RootState, AppDispatch } from './store';
 
@@ -28,4 +30,10 @@ export const useFriendRequests = () => {
     if (friendList && friendList.length > 0)
       dispatch(getUserAcceptedFriendList(friendList[0].acceptedFriends));
   }, [friendRequests]);
+};
+
+export const useLogout = () => {
+  const dispatch = useAppDispatch();
+  dispatch(logOut());
+  dispatch(clearStore());
 };
