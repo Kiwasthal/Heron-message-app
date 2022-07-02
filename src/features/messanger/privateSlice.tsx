@@ -29,6 +29,7 @@ const privateSlice = createSlice({
   name: 'private',
   initialState,
   reducers: {
+    clearPrivate: state => {},
     getFriendInput: (state, action: PayloadAction<string>) => {
       state.friendInput = action.payload;
     },
@@ -47,6 +48,9 @@ const privateSlice = createSlice({
     storeCurrentTextValue: (state, action: PayloadAction<string>) => {
       state.currentMessageText = action.payload;
     },
+    logout: state => {
+      state = initialState;
+    },
   },
 });
 
@@ -57,4 +61,5 @@ export const {
   getUserAcceptedFriendList,
   getCurrentChatRoomId,
   storeCurrentTextValue,
+  clearPrivate,
 } = privateSlice.actions;

@@ -56,7 +56,7 @@ export const StyledChatBox = styled.div`
   display: grid;
   padding: 20px;
   gap: 10px;
-  grid-auto-rows: 100px;
+  grid-auto-rows: minmax(30px, 200px);
   overflow-y: scroll;
   overflow-x: hidden;
 `;
@@ -83,6 +83,8 @@ export const StyledSentMessage = styled.div`
   display: grid;
   grid-template-columns: 30% 1fr;
   grid-template-rows: 50% 1fr;
+  height: auto;
+  padding: 5px;
 `;
 
 export const StyledReceivedMessage = styled.div`
@@ -93,6 +95,8 @@ export const StyledReceivedMessage = styled.div`
   display: grid;
   grid-template-columns: 30% 1fr;
   grid-template-rows: 50% 1fr;
+  height: auto;
+  padding: 5px;
 `;
 
 export const StyledMessageInfoContainer = styled.div`
@@ -123,6 +127,7 @@ export const MessageUserName = styled.p`
 export const MessageText = styled.p`
   grid-area: 2 / 1 / 3 / 3;
   padding: 0px 5px 0px 5px;
+  overflow-wrap: break-word;
 `;
 
 export const showPrivate = {

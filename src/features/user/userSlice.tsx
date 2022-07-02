@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, isAnyOf } from '@reduxjs/toolkit';
 import { auth } from '../../firebase/firebase';
 import { signUp, logIn, logOut, catalogueUser } from './manualSlice';
+
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 type InitialState = {
@@ -36,7 +37,13 @@ export const signInWithGoogle = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    clearUser: state => {
+      // From here we can take action only at this "counter" state
+      // But, as we have taken care of this particular "logout" action
+      // in rootReducer, we can use it to CLEAR the complete Redux Store's state
+    },
+  },
   extraReducers: builder => {
     builder.addCase(signInWithGoogle.pending, state => {
       state.loading = true;
@@ -83,3 +90,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+export const { clearUser } = userSlice.actions;
