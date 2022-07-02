@@ -4,6 +4,7 @@ import {
   arrayUnion,
   collection,
   doc,
+  getDoc,
   getDocs,
   limit,
   orderBy,
@@ -51,6 +52,7 @@ export type AddFriendData = {
 type QueryResponse = QueryMessageProps[];
 
 type ResultType = 'resolved' | 'failed ';
+type ConditionType = boolean;
 
 export const firebaseApi = createApi({
   reducerPath: 'firebaseApi',
@@ -163,6 +165,19 @@ export const firebaseApi = createApi({
         }
       },
     }),
+    addUserValidation: builder.mutation<ConditionType, string>({
+      async queryFn(inputValue: string) {
+        try {
+          let condition = false;
+          const userRef = doc(db, `users/${inputValue}`);
+          const docSnap = await getDoc(userRef);
+          if (docSnap.exists()) condition = true;
+          return { data: condition };
+        } catch (e) {
+          return { error: 'failed' };
+        }
+      },
+    }),
   }),
 });
 
@@ -172,4 +187,5 @@ export const {
   useAddGlobalMessageMutation,
   useAcceptFriendRequestMutation,
   useAddPrivateMessageMutation,
+  useAddUserValidationMutation,
 } = firebaseApi;
