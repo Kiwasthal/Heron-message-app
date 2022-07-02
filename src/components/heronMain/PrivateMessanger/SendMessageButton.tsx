@@ -9,7 +9,6 @@ const SendMessageButton = () => {
   const userImage = useAppSelector(state => state.user.userImage);
   const chatId = useAppSelector(state => state.private.currentChatroom);
   const [addMessage] = useAddPrivateMessageMutation();
-  console.log('chatId', chatId);
 
   const messageData = {
     chatId: chatId,

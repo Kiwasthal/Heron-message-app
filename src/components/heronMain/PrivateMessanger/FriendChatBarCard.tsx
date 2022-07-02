@@ -14,15 +14,11 @@ type FriendChatCardProps = {
 };
 
 export const FriendChatBarCard = (props: FriendChatCardProps) => {
-  const acceptedFriends = useAppSelector(
-    state => state.private.acceptedUserFriends
-  );
   const q = query(
     collection(db, `users`),
     where('__name__', '==', `${props.info}`)
   );
   const [friendInfo] = useCollectionData(q);
-  console.log(props.chatId);
 
   const dispatch = useAppDispatch();
   const addCurrentChattersToShop = () => {

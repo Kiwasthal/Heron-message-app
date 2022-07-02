@@ -1,4 +1,4 @@
-import { collection, limit, orderBy, query, where } from 'firebase/firestore';
+import { collection, limit, orderBy, query } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAppSelector } from '../../../app/hooks';
 import { db } from '../../../firebase/firebase';
@@ -24,8 +24,23 @@ const ChatBox = () => {
         messages.length > 0 &&
         messages.map(message => {
           if (message.email === userEmail)
-            return <SentMessage key={message.id} text={message.text} />;
-          else return <ReceivedMessage key={message.id} text={message.text} />;
+            return (
+              <SentMessage
+                key={message.id}
+                text={message.text}
+                image={message.profilePicUrl}
+                name={message.name}
+              />
+            );
+          else
+            return (
+              <ReceivedMessage
+                key={message.id}
+                text={message.text}
+                image={message.profilePicUrl}
+                name={message.name}
+              />
+            );
         })}
     </StyledChatBox>
   );
