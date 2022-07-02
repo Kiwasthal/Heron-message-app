@@ -30,11 +30,8 @@ const navSlice = createSlice({
     closeFriendsModal: state => {
       state.friendsModal = false;
     },
-    showChatbar: state => {
-      state.chatBar = true;
-    },
-    hideChatbar: state => {
-      state.chatBar = false;
+    toggleChatBar: state => {
+      state.chatBar = !state.chatBar;
     },
     closeAllInterfaces: state => {
       state.globalChat = false;
@@ -50,6 +47,5 @@ export const {
   showFriendsElement,
   openFriendsModal,
   closeFriendsModal,
-  showChatbar,
-  hideChatbar,
+  toggleChatBar,
 } = navSlice.actions;

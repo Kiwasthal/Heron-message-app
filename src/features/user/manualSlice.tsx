@@ -38,6 +38,7 @@ type UserLogInProps = {
 type CatalogueUserProps = {
   email: undefined | null | string;
   name: undefined | null | string;
+  photoURL: undefined | null | string;
 };
 
 export const signUp = createAsyncThunk(
@@ -72,11 +73,11 @@ export const logOut = createAsyncThunk('user/logOut', async () => {
 
 export const catalogueUser = createAsyncThunk(
   'user/catalogue',
-  async ({ email, name }: CatalogueUserProps) => {
+  async ({ email, name, photoURL }: CatalogueUserProps) => {
     await setDoc(doc(db, 'users', `${email}`), {
       name: name,
       email: email,
-      photoURL: placeholderImage,
+      photoURL: photoURL,
     });
   }
 );

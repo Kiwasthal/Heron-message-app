@@ -24,8 +24,12 @@ const initialState: InitialState = {
 export const signInWithGoogle = createAsyncThunk(
   'user/signInWithGoogle',
   async () => {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+    } catch (e) {
+      console.log(e);
+    }
   }
 );
 
