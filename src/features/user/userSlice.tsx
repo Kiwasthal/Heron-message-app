@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, isAnyOf } from '@reduxjs/toolkit';
 import { auth } from '../../firebase/firebase';
-import { signUp, logIn, logOut } from './manualSlice';
+import { signUp, logIn, logOut, catalogueUser } from './manualSlice';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 type InitialState = {
@@ -56,18 +56,28 @@ const userSlice = createSlice({
       state.userImage = auth.currentUser?.photoURL;
     });
     builder.addCase(logIn.fulfilled, state => {
-      state.userEmail = auth.currentUser?.email;
-      state.userName = auth.currentUser?.displayName;
-      state.userImage = auth.currentUser?.photoURL;
-    });
-    builder.addMatcher(isAnyOf(signUp.pending), state => {
-      state.loading = true;
-    });
-    builder.addMatcher(isAnyOf(signUp.fulfilled), state => {
       state.loading = false;
       state.userEmail = auth.currentUser?.email;
       state.userName = auth.currentUser?.displayName;
       state.userImage = auth.currentUser?.photoURL;
+    });
+    builder.addCase(signUp.fulfilled, state => {
+      state.userEmail = auth.currentUser?.email;
+      state.userName = auth.currentUser?.displayName;
+      state.userImage = auth.currentUser?.photoURL;
+      state.loading = false;
+    });
+    builder.addCase(signUp.rejected, state => {
+      state.errors = 'Internal Error';
+    });
+    builder.addCase(catalogueUser.pending, state => {
+      state.loading = true;
+    });
+    builder.addCase(catalogueUser.fulfilled, state => {
+      state.loading = false;
+    });
+    builder.addMatcher(isAnyOf(signUp.pending), state => {
+      state.loading = true;
     });
   },
 });

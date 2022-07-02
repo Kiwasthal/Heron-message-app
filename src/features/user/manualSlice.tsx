@@ -50,12 +50,12 @@ export const signUp = createAsyncThunk(
     };
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      if (auth.currentUser !== null)
+      if (auth.currentUser !== null && auth.currentUser.email !== null)
         await updateProfile(auth.currentUser, updateUserInfo).catch(err =>
           console.log(err)
         );
     } catch (err) {
-      return 'Something went wrong';
+      console.log(err);
     }
   }
 );
