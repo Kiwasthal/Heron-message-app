@@ -1,5 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LandingHolder from '../../components/landing/LandingHolder';
 import SignModal from '../../components/landing/SignModal';
 import SignInWrapper from '../../components/landing/SignInWrapper';
@@ -18,11 +18,19 @@ import { SignUpConfirmPasswordInput } from '../../components/landing/inputs/Sign
 import { SignUpButton } from '../../components/landing/buttons/SignUpButton';
 import { StyledNavigateWrapper } from '../../styledComponents/landingPage/text/navigatoToSignUpWrapper';
 import { SignTextHolder } from '../../components/landing/text/SignTextHolder';
+import { useAppDispatch } from '../../app/hooks';
+import { logOut } from '../../features/user/manualSlice';
 
 function LandingView() {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const changeToSignUp = () => setIsVisible(false);
   const changeToSignIn = () => setIsVisible(true);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(logOut());
+  }, []);
+
   return (
     <LandingHolder>
       <SignModal>

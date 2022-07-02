@@ -9,7 +9,7 @@ type AddFriendProps = {
 };
 
 const AddFriendCard = (props: AddFriendProps) => {
-  const [sendFriendRequest, data] = useAcceptFriendRequestMutation();
+  const [acceptFriendRequest, error] = useAcceptFriendRequestMutation();
   const userEmail = useAppSelector(state => state.user.userEmail);
 
   const addFriendData = {
@@ -17,9 +17,8 @@ const AddFriendCard = (props: AddFriendProps) => {
     friendEmail: props.data.email,
   };
 
-  const addFriendHandler = () => {
-    sendFriendRequest(addFriendData);
-  };
+  const addFriendHandler = () => acceptFriendRequest(addFriendData);
+
   return (
     <StyledAddFriendCard>
       <p>{props.data.email}</p>

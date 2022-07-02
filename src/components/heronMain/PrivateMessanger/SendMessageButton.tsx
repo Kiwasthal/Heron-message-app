@@ -23,7 +23,10 @@ const SendMessageButton = () => {
     await addMessage(messageData);
   };
   return (
-    <StyledSendPrivateMessageButton onClick={sendMessage}>
+    <StyledSendPrivateMessageButton
+      onClick={sendMessage}
+      disabled={chatId ? false : true}
+    >
       Send
     </StyledSendPrivateMessageButton>
   );

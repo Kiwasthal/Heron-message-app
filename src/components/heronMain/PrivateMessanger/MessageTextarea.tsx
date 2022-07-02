@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { storeCurrentTextValue } from '../../../features/messanger/privateSlice';
 import { StyledPrivateTextarea } from '../../../styledComponents/heronMain/privateMessanger/styledPrivateMessanger';
 
 const MessageTextarea = () => {
   const [messageValue, setMessageValue] = useState<string>('');
+  const chatroom = useAppSelector(state => state.private.currentChatroom);
   const dispatch = useAppDispatch();
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
     setMessageValue(e.currentTarget.value);
@@ -16,6 +17,7 @@ const MessageTextarea = () => {
       value={messageValue}
       onChange={handleChange}
       onBlur={pushMessageToStore}
+      disabled={chatroom ? false : true}
     />
   );
 };

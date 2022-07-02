@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { StyledMessageTextArea } from '../../../styledComponents/heronMain/globalMessanger/styledGlobalMessanger';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getGlobalMessage } from '../../../features/messanger/globalSlice';
 
 const GlobalTextArea = () => {
@@ -15,6 +15,7 @@ const GlobalTextArea = () => {
       value={text}
       onChange={handleChange}
       onBlur={pushMessageToStore}
+      maxLength={100}
     />
   );
 };

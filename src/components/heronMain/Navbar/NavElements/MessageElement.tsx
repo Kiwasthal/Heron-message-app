@@ -4,7 +4,7 @@ import { StyledNavElement } from '../../../../styledComponents/heronMain/nav/nav
 import { ElementTag } from '../../../../styledComponents/heronMain/nav/navElements/styledElements';
 import { AnimationControls } from 'framer-motion';
 import { useAppDispatch } from '../../../../app/hooks';
-import { showChatbar } from '../../../../features/nav/navSlice';
+import { toggleChatBar } from '../../../../features/nav/navSlice';
 
 type ElementProps = {
   value: AnimationControls;
@@ -12,7 +12,7 @@ type ElementProps = {
 
 const MessageElement = (props: ElementProps) => {
   const dispatch = useAppDispatch();
-  const handleClick = () => dispatch(showChatbar());
+  const handleClick = () => dispatch(toggleChatBar());
   return (
     <StyledNavElement custom={1} animate={props.value} onClick={handleClick}>
       <NavFontIcon icon={faMessage} />
