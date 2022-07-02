@@ -77,7 +77,12 @@ const FriendsModal = () => {
           <CloseFriendsModal onClick={closeModal}>+</CloseFriendsModal>
           <p>Search by email</p>
           <StyledAddFriendInput value={inputValue} onChange={handleChange} />
-          <button onClick={sendRequest}>Add</button>
+          <button
+            onClick={sendRequest}
+            disabled={validation.status === 'pending'}
+          >
+            Add
+          </button>
           <div>{errMsg}</div>
         </StyledFriendsModal>
       )}
