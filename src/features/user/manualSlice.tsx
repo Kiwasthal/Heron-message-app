@@ -9,6 +9,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { db } from '../../firebase/firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import placeholderImage from '../../assets/userPlaceHolder.svg';
+import { FirebaseError } from 'firebase/app';
 
 type InitialState = {
   userNameInput: string;
@@ -41,9 +42,16 @@ type CatalogueUserProps = {
   photoURL: undefined | null | string;
 };
 
-export const signUp = createAsyncThunk(
+interface SerializedError {
+  name?: string;
+  message?: string;
+  stack?: string;
+  code?: string;
+}
+
+export const signUp = createAsyncThunk<void, UserSignUpProps>(
   'user/signUp',
-  async ({ email, password, name }: UserSignUpProps) => {
+  async ({ email, password, name }, { rejectWithValue }) => {
     let updateUserInfo = {
       displayName: name,
       photoURL: placeholderImage,
@@ -51,19 +59,26 @@ export const signUp = createAsyncThunk(
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       if (auth.currentUser !== null && auth.currentUser.email !== null)
-        await updateProfile(auth.currentUser, updateUserInfo).catch(err =>
-          console.log(err)
+        await updateProfile(auth.currentUser, updateUserInfo).catch(error =>
+          console.error(error)
         );
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      return rejectWithValue(error);
     }
   }
 );
 
 export const logIn = createAsyncThunk(
   'user/logIn',
-  async ({ email, password }: UserLogInProps) => {
-    await signInWithEmailAndPassword(auth, email, password);
+  async (userData: UserLogInProps, { rejectWithValue }) => {
+    const { email, password } = userData;
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      return response;
+    } catch (error) {
+      if (error instanceof FirebaseError && 'code' in error)
+        return rejectWithValue(error.code.toString());
+    }
   }
 );
 

@@ -1,7 +1,11 @@
-import { createSlice, createAsyncThunk, isAnyOf } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  createAsyncThunk,
+  isAnyOf,
+  SerializedError,
+} from '@reduxjs/toolkit';
 import { auth } from '../../firebase/firebase';
 import { signUp, logIn, logOut, catalogueUser } from './manualSlice';
-
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 type InitialState = {
@@ -10,7 +14,7 @@ type InitialState = {
   userImage: undefined | null | string;
   userPassword: string;
   loading: boolean;
-  errors: string;
+  errors: unknown | null;
 };
 
 const initialState: InitialState = {
@@ -19,17 +23,17 @@ const initialState: InitialState = {
   userImage: null,
   userPassword: '',
   loading: false,
-  errors: '',
+  errors: null,
 };
 
-export const signInWithGoogle = createAsyncThunk(
+export const signInWithGoogle = createAsyncThunk<void, Error>(
   'user/signInWithGoogle',
   async () => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.error(error);
     }
   }
 );
@@ -39,7 +43,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     clearStore: state => {
-      //Handled in store
+      //Handled in rootReducer : store
     },
   },
   extraReducers: builder => {
@@ -62,6 +66,7 @@ const userSlice = createSlice({
     });
     builder.addCase(logIn.fulfilled, state => {
       state.loading = false;
+      state.errors = '';
       state.userEmail = auth.currentUser?.email;
       state.userName = auth.currentUser?.displayName;
       state.userImage = auth.currentUser?.photoURL;
@@ -81,6 +86,16 @@ const userSlice = createSlice({
     builder.addCase(catalogueUser.fulfilled, state => {
       state.loading = false;
     });
+    //AsyncThunk error handling
+    builder.addCase(signInWithGoogle.rejected, (state, action) => {
+      state.errors = action.error;
+      state.loading = false;
+    });
+    builder.addCase(logIn.rejected, (state, action) => {
+      state.errors = action.payload;
+      state.loading = false;
+    });
+    //Matcher type
     builder.addMatcher(isAnyOf(signUp.pending), state => {
       state.loading = true;
     });
