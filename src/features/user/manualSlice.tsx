@@ -42,13 +42,6 @@ type CatalogueUserProps = {
   photoURL: undefined | null | string;
 };
 
-interface SerializedError {
-  name?: string;
-  message?: string;
-  stack?: string;
-  code?: string;
-}
-
 export const signUp = createAsyncThunk<void, UserSignUpProps>(
   'user/signUp',
   async ({ email, password, name }, { rejectWithValue }) => {
@@ -63,7 +56,8 @@ export const signUp = createAsyncThunk<void, UserSignUpProps>(
           console.error(error)
         );
     } catch (error) {
-      return rejectWithValue(error);
+      if (error instanceof FirebaseError && 'code' in error)
+        return rejectWithValue(error.code.toString());
     }
   }
 );
