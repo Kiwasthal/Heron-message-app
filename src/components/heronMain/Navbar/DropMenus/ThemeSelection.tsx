@@ -5,11 +5,16 @@ type ThemeSelectionProps = {
   text: string;
   value: AnimationControls;
   starting: number;
+  action: () => void;
 };
 
 const ThemeSelection = (props: ThemeSelectionProps) => {
   return (
-    <AnimatedThemeSelection custom={props.starting} animate={props.value}>
+    <AnimatedThemeSelection
+      custom={props.starting}
+      animate={props.value}
+      onClick={props.action}
+    >
       {props.text}
     </AnimatedThemeSelection>
   );

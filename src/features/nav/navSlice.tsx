@@ -1,5 +1,8 @@
 import { defaultTheme, ThemeType } from '../../theme/defaultTheme';
+import { lightTheme } from '../../theme/lightTheme';
+import { darkTheme } from '../../theme/darkTheme';
 import { createSlice } from '@reduxjs/toolkit';
+import { seaTheme } from '../../theme/seaTheme';
 
 type InitialStateProps = {
   globalChat: boolean;
@@ -49,6 +52,18 @@ const navSlice = createSlice({
       state.friendsElement = false;
       state.friendsModal = false;
     },
+    setThemeDark: state => {
+      state.theme = darkTheme;
+    },
+    setThemeDefault: state => {
+      state.theme = defaultTheme;
+    },
+    setThemeLight: state => {
+      state.theme = lightTheme;
+    },
+    setThemeSea: state => {
+      state.theme = seaTheme;
+    },
   },
 });
 
@@ -61,4 +76,8 @@ export const {
   toggleChatBar,
   showThemeDropmenu,
   hideThemeDropmenu,
+  setThemeDark,
+  setThemeDefault,
+  setThemeLight,
+  setThemeSea,
 } = navSlice.actions;

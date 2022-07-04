@@ -19,7 +19,10 @@ export const SignInButton = ({ children }: SignInButtonProps) => {
     email: userLogInMail,
     password: userLogInPassword,
   };
-  const submitLogIn = () => dispatch(logIn(logInData));
+  const submitLogIn = () => {
+    if (userLogInMail !== '' && userLogInPassword !== '')
+      dispatch(logIn(logInData));
+  };
 
   return (
     <StyledSignInButton

@@ -5,9 +5,10 @@ import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from './theme/defaultTheme';
 // import { useAuthState } from 'react-firebase-hooks/auth';
 import { useState } from 'react';
+import { useAppSelector } from './app/hooks';
 
 function App() {
-  const [theme, setDefaultTheme] = useState(defaultTheme);
+  const theme = useAppSelector(state => state.nav.theme);
   return (
     <ThemeProvider theme={theme}>
       <Router>
