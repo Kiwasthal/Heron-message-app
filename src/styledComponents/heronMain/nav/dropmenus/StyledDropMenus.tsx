@@ -11,6 +11,27 @@ export const StyledDropContainer = styled.div`
   gap: 20px;
 `;
 
+export const StyledThemeDropmenu = styled(StyledDropContainer)`
+  top: 100%;
+  gap: 0;
+  align-items: center;
+`;
+
+export const AnimatedThemeSelection = styled(motion.li)`
+  text-align: center;
+  list-style: none;
+  background-color: #e11d48;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  width: 100%;
+  color: #fff;
+  transition: all 200ms;
+  &:hover {
+    background-color: yellow;
+  }
+`;
+
 export const StyledAddFriends = styled(motion.div)`
   height: 3vh;
   padding: 20px;

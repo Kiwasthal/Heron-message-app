@@ -13,4 +13,5 @@ export const StyledNav = styled(motion.nav)`
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   justify-self: center;
+  z-index: 1001;
 `;
