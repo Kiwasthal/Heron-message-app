@@ -12,27 +12,32 @@ export type GoogleButtonProps = {
   children: string;
 };
 
-type CurrentUserEmail = string | null | undefined;
-
 export const LogInWithGoogleButton = ({ children }: GoogleButtonProps) => {
   const dispatch = useAppDispatch();
 
-  const firestoreData = {
-    name: auth.currentUser?.displayName,
-    email: auth.currentUser?.email,
-    photoURL: auth.currentUser?.photoURL,
-  };
-
-  let catalogueConditionally = async (curUserEmail: CurrentUserEmail) => {
-    const userRef = doc(db, `users/${curUserEmail}`);
+  let catalogueConditionally = async () => {
+    const firestoreData = {
+      name: auth.currentUser?.displayName,
+      email: auth.currentUser?.email,
+      photoURL: auth.currentUser?.photoURL,
+    };
+    const userRef = doc(db, `users`, `${firestoreData.email}`);
     const docSnap = await getDoc(userRef);
+    console.log('condition', docSnap.exists());
     if (docSnap.exists()) return;
-    dispatch(catalogueUser(firestoreData));
+    console.log(firestoreData);
+    await dispatch(catalogueUser(firestoreData));
   };
 
   const signIn = async () => {
-    await dispatch(signInWithGoogle());
-    await catalogueConditionally(auth.currentUser?.email);
+    await dispatch(signInWithGoogle('user')).then(() => {
+      const firestoreData = {
+        name: auth.currentUser?.displayName,
+        email: auth.currentUser?.email,
+        photoURL: auth.currentUser?.photoURL,
+      };
+      catalogueConditionally();
+    });
   };
 
   return (
