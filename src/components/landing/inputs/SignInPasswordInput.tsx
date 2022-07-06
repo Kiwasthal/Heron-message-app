@@ -1,12 +1,12 @@
 import {
   StyledInput,
-  dropInName,
   StyledInputWrapper,
   StyledErrorText,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useState } from 'react';
 import { getPasswordInput } from '../../../features/user/manualSlice';
+import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export const SignInPasswordInput = () => {
   const errors = useAppSelector(state => state.user.errors);
@@ -18,12 +18,16 @@ export const SignInPasswordInput = () => {
   const pushUserNameToStore = () => {
     if (userPassword === '') {
       setMissingPass(true);
-    } else dispatch(getPasswordInput(userPassword));
+    } else {
+      dispatch(getPasswordInput(userPassword));
+      setMissingPass(false);
+    }
   };
   return (
     <StyledInputWrapper>
       <StyledInput
-        variants={dropInName}
+        custom={2.2}
+        variants={landingElementVariants}
         initial="hidden"
         animate="visible"
         exit="exit"

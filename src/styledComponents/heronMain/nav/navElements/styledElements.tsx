@@ -8,7 +8,7 @@ export const StyledNavElement = styled(motion.div)`
   height: 100%;
   grid-template-rows: 50% 50%;
   justify-items: center;
-  border-right: 2px solid #fff;
+  border-right: 2px solid ${props => props.theme.navborder};
   cursor: pointer;
   background-color: inherit;
   transition: all 400ms ease;
@@ -27,7 +27,7 @@ export const RightMostNavElement = styled(StyledNavElement)`
 `;
 
 export const ElementTag = styled.p`
-  color: #fff;
+  color: ${props => props.theme.text};
   font-size: 24px;
   margin: 0;
   padding: 5px;
@@ -48,5 +48,6 @@ export const UserIcon = styled.img`
 export const NavFontIcon = styled(FontAwesomeIcon)`
   align-self: center;
   height: 2.25rem;
-  color: #fff;
+  color: ${props => props.theme.icons};
+  transition: all 200ms ease-in;
 `;

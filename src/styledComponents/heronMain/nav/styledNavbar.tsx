@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const StyledNav = styled(motion.nav)`
   grid-area: 1 / 1 / 2 / 3;
-  background-color: ${props => props.theme.main};
+  background-color: ${props => props.theme.main.elements};
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   align-items: center;

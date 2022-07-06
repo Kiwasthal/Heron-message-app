@@ -4,10 +4,10 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getEmailInput } from '../../../features/user/manualSlice';
 import {
   StyledInput,
-  dropInEmail,
   StyledInputWrapper,
   StyledErrorText,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
+import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export const SignInEmailInput = () => {
   const [userEmail, setUserEmail] = useState<string>('');
@@ -18,13 +18,17 @@ export const SignInEmailInput = () => {
     setUserEmail(e.currentTarget.value);
   const pushEmailToStore = () => {
     if (userEmail === '') setEmailMiss(true);
-    else dispatch(getEmailInput(userEmail));
+    else {
+      dispatch(getEmailInput(userEmail));
+      setEmailMiss(false);
+    }
   };
   console.log(errors);
   return (
     <StyledInputWrapper>
       <StyledInput
-        variants={dropInEmail}
+        custom={2}
+        variants={landingElementVariants}
         initial="hidden"
         animate="visible"
         exit="exit"

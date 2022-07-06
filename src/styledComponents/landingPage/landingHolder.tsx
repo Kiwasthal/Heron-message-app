@@ -26,7 +26,7 @@ export const fadeIn = {
 export const StyledLandingHolder = styled(motion.div)`
   height: 100vh;
   width: 100vw;
-  background-color: #fef08a;
+  background-color: ${props => props.theme.main.background};
   display: grid;
   grid-template-columns: 60% 1fr;
   overflow: hidden;

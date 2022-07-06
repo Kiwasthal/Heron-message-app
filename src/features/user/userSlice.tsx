@@ -26,9 +26,9 @@ const initialState: InitialState = {
   errors: null,
 };
 
-export const signInWithGoogle = createAsyncThunk<void, Error>(
+export const signInWithGoogle = createAsyncThunk<void, string>(
   'user/signInWithGoogle',
-  async () => {
+  async _ => {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);

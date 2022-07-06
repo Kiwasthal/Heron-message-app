@@ -1,10 +1,12 @@
 import {
   StyledInput,
-  dropInConfPass,
+  StyledInputWrapper,
+  StyledErrorText,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 import { useState } from 'react';
 import { useAppDispatch } from '../../../app/hooks';
 import { getConfirmationPasswordInput } from '../../../features/user/manualSlice';
+import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export const SignUpConfirmPasswordInput = () => {
   const [userConfirmPassword, setUserConfirmPassword] = useState<string>('');
@@ -14,16 +16,20 @@ export const SignUpConfirmPasswordInput = () => {
   const pushUserNameToStore = () =>
     dispatch(getConfirmationPasswordInput(userConfirmPassword));
   return (
-    <StyledInput
-      type="password"
-      placeholder="Confirm Password"
-      variants={dropInConfPass}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      value={userConfirmPassword}
-      onChange={handleChange}
-      onBlur={pushUserNameToStore}
-    />
+    <StyledInputWrapper>
+      <StyledInput
+        custom={1.8}
+        type="password"
+        placeholder="Confirm Password"
+        variants={landingElementVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        value={userConfirmPassword}
+        onChange={handleChange}
+        onBlur={pushUserNameToStore}
+      />
+      <StyledErrorText />
+    </StyledInputWrapper>
   );
 };

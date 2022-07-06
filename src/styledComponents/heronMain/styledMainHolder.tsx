@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export const StyledHeronMainHolder = styled(motion.div)`
   height: 100vh;
   width: 100vw;
-  background-color: #fef08a;
+  background-color: ${props => props.theme.main.background};
   display: grid;
   grid-auto-rows: 10% 1fr 6%;
   overflow: hidden;

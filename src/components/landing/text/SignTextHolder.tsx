@@ -1,5 +1,5 @@
-import { dropInTitle } from '../../../styledComponents/landingPage/text/signInHeader';
 import { TextHolder } from '../../../styledComponents/landingPage/text/textHolder';
+import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export type SignInTextProps = {
   children: string;
@@ -8,7 +8,8 @@ export type SignInTextProps = {
 export const SignTextHolder = ({ children }: SignInTextProps) => {
   return (
     <TextHolder
-      variants={dropInTitle}
+      custom={2.8}
+      variants={landingElementVariants}
       initial="hidden"
       animate="visible"
       exit="exit"

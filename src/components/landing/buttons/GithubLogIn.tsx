@@ -1,7 +1,5 @@
-import {
-  StyledGithubButton,
-  dropIn,
-} from '../../../styledComponents/landingPage/buttons/githubButton';
+import { StyledGithubButton } from '../../../styledComponents/landingPage/buttons/styledButtons';
+import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export type GithubButtonProps = {
   children: string;
@@ -10,7 +8,8 @@ export type GithubButtonProps = {
 export const LogInWithGithubButton = ({ children }: GithubButtonProps) => {
   return (
     <StyledGithubButton
-      variants={dropIn}
+      custom={2.6}
+      variants={landingElementVariants}
       initial="hidden"
       animate="visible"
       exit="exit"

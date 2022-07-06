@@ -5,9 +5,6 @@ export const dropLeft = {
   hidden: {
     x: '100vh',
     opacity: 0,
-    transition: {
-      delay: 1,
-    },
   },
   visible: {
     x: '0',
@@ -23,9 +20,6 @@ export const dropLeft = {
   exit: {
     y: '100vh',
     opacity: 0,
-    transition: {
-      delay: 0.5,
-    },
   },
 };
 

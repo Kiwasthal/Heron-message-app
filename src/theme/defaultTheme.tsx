@@ -4,6 +4,11 @@ export type ThemeType = {
 };
 
 export const defaultTheme = {
-  main: 'violet',
+  main: {
+    elements: '#e879f9',
+    background: '#f0abfc',
+  },
   text: '#fff',
+  icons: '#fff',
+  navborder: '#fff',
 };

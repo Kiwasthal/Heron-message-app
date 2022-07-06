@@ -1,9 +1,7 @@
-import {
-  dropIn,
-  StyledSignInButton,
-} from '../../../styledComponents/landingPage/buttons/signInButton';
+import { StyledSignInButton } from '../../../styledComponents/landingPage/buttons/styledButtons';
 import { logIn } from '../../../features/user/manualSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export type SignInButtonProps = {
   children: string;
@@ -26,7 +24,8 @@ export const SignInButton = ({ children }: SignInButtonProps) => {
 
   return (
     <StyledSignInButton
-      variants={dropIn}
+      custom={2.2}
+      variants={landingElementVariants}
       initial="hidden"
       animate="visible"
       exit="exit"

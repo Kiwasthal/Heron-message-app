@@ -1,16 +1,9 @@
-import {
-  signUp,
-  catalogueUser,
-  logOut,
-} from '../../../features/user/manualSlice';
+import { signUp, catalogueUser } from '../../../features/user/manualSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import {
-  dropIn,
-  StyledSignInButton,
-} from '../../../styledComponents/landingPage/buttons/signInButton';
 import placeholderImage from '../../../assets/userPlaceHolder.svg';
 import { auth } from '../../../firebase/firebase';
-import { useEffect } from 'react';
+import { StyledSignInButton } from '../../../styledComponents/landingPage/buttons/styledButtons';
+import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export type SignUpButtonProps = {
   children: string;
@@ -53,7 +46,8 @@ export const SignUpButton = ({ children }: SignUpButtonProps) => {
 
   return (
     <StyledSignInButton
-      variants={dropIn}
+      custom={2}
+      variants={landingElementVariants}
       initial="hidden"
       animate="visible"
       exit="exit"

@@ -1,7 +1,5 @@
-import {
-  StyledSignInTitle,
-  dropInTitle,
-} from '../../../styledComponents/landingPage/text/signInHeader';
+import { StyledSignInTitle } from '../../../styledComponents/landingPage/text/signInHeader';
+import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export type SignInTitleProps = {
   children: string;
@@ -10,7 +8,8 @@ export type SignInTitleProps = {
 export const ModalHeader = ({ children }: SignInTitleProps) => {
   return (
     <StyledSignInTitle
-      variants={dropInTitle}
+      custom={3}
+      variants={landingElementVariants}
       initial="hidden"
       animate="visible"
       exit="exit"

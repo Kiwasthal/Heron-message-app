@@ -1,12 +1,10 @@
-import {
-  StyledGoogleButton,
-  dropIn,
-} from '../../../styledComponents/landingPage/buttons/googleButton';
 import { useAppDispatch } from '../../../app/hooks';
 import { signInWithGoogle } from '../../../features/user/userSlice';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../../../firebase/firebase';
 import { catalogueUser } from '../../../features/user/manualSlice';
+import { StyledGoogleButton } from '../../../styledComponents/landingPage/buttons/styledButtons';
+import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export type GoogleButtonProps = {
   children: string;
@@ -23,26 +21,20 @@ export const LogInWithGoogleButton = ({ children }: GoogleButtonProps) => {
     };
     const userRef = doc(db, `users`, `${firestoreData.email}`);
     const docSnap = await getDoc(userRef);
-    console.log('condition', docSnap.exists());
     if (docSnap.exists()) return;
-    console.log(firestoreData);
     await dispatch(catalogueUser(firestoreData));
   };
 
   const signIn = async () => {
     await dispatch(signInWithGoogle('user')).then(() => {
-      const firestoreData = {
-        name: auth.currentUser?.displayName,
-        email: auth.currentUser?.email,
-        photoURL: auth.currentUser?.photoURL,
-      };
       catalogueConditionally();
     });
   };
 
   return (
     <StyledGoogleButton
-      variants={dropIn}
+      custom={2.4}
+      variants={landingElementVariants}
       initial="hidden"
       animate="visible"
       exit="exit"
