@@ -4,12 +4,13 @@ import {
   StyledInputWrapper,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 import { useState } from 'react';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getPasswordInput } from '../../../features/user/manualSlice';
 import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export const SignUpPasswordInput = () => {
   const [userPassword, setUserPassword] = useState<string>('');
+  const errors = useAppSelector(state => state.user.errors);
   const dispatch = useAppDispatch();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setUserPassword(e.currentTarget.value);
@@ -28,7 +29,13 @@ export const SignUpPasswordInput = () => {
         onChange={handleChange}
         onBlur={pushPasswordToStore}
       />
-      <StyledErrorText />
+      <StyledErrorText>
+        {errors === 'pass-missing'
+          ? 'Please input a password'
+          : errors === 'auth/weak-password'
+          ? 'Password is too weak'
+          : null}
+      </StyledErrorText>
     </StyledInputWrapper>
   );
 };

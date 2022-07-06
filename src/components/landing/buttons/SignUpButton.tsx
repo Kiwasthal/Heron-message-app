@@ -4,6 +4,7 @@ import placeholderImage from '../../../assets/userPlaceHolder.svg';
 import { auth } from '../../../firebase/firebase';
 import { StyledSignInButton } from '../../../styledComponents/landingPage/buttons/styledButtons';
 import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
+import { setPasswordError } from '../../../features/user/userSlice';
 
 export type SignUpButtonProps = {
   children: string;
@@ -32,7 +33,27 @@ export const SignUpButton = ({ children }: SignUpButtonProps) => {
   };
 
   const submitUser = async () => {
-    if (userConfirmPassword !== userPasswordInput) return;
+    if (userNameInput === '' || userNameInput === null) {
+      dispatch(setPasswordError('username-missing'));
+      return;
+    }
+    if (userEmailInput === '' || userEmailInput === null) {
+      dispatch(setPasswordError('email-missing'));
+      return;
+    }
+    if (userPasswordInput === '') {
+      dispatch(setPasswordError('pass-missing'));
+      return;
+    }
+    if (userConfirmPassword === '') {
+      dispatch(setPasswordError('confpass-missing'));
+      return;
+    }
+    if (userConfirmPassword !== userPasswordInput) {
+      dispatch(setPasswordError('pass-no-match'));
+      return;
+    }
+
     try {
       await dispatch(signUp(userData))
         .then(() => {

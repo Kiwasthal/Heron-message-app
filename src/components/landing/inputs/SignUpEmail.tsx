@@ -4,16 +4,18 @@ import {
   StyledErrorText,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 import { useState } from 'react';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getEmailInput } from '../../../features/user/manualSlice';
 import { landingElementVariants } from '../../../styledComponents/landingPage/variants/landingElementsVariants';
 
 export const SignUpEmailInput = () => {
   const [userEmail, setUserEmail] = useState<string>('');
+  const errors = useAppSelector(state => state.user.errors);
   const dispatch = useAppDispatch();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setUserEmail(e.currentTarget.value);
   const pushUserNameToStore = () => dispatch(getEmailInput(userEmail));
+  console.log(errors);
   return (
     <StyledInputWrapper>
       <StyledInput
@@ -28,7 +30,15 @@ export const SignUpEmailInput = () => {
         onChange={handleChange}
         onBlur={pushUserNameToStore}
       />
-      <StyledErrorText />
+      <StyledErrorText>
+        {errors === 'email-missing'
+          ? 'Please input your email'
+          : errors === 'auth/invalid-email'
+          ? 'Please input a valid email address'
+          : errors === 'auth/email-already-in-use'
+          ? 'This email is already in use'
+          : null}
+      </StyledErrorText>
     </StyledInputWrapper>
   );
 };

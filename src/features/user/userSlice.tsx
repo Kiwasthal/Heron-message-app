@@ -2,7 +2,7 @@ import {
   createSlice,
   createAsyncThunk,
   isAnyOf,
-  SerializedError,
+  PayloadAction,
 } from '@reduxjs/toolkit';
 import { auth } from '../../firebase/firebase';
 import { signUp, logIn, logOut, catalogueUser } from './manualSlice';
@@ -45,13 +45,20 @@ const userSlice = createSlice({
     clearStore: state => {
       //Handled in rootReducer : store
     },
+    setPasswordError: (state, action: PayloadAction<string>) => {
+      state.errors = action.payload;
+    },
   },
   extraReducers: builder => {
     builder.addCase(signInWithGoogle.pending, state => {
       state.loading = true;
     });
-    builder.addCase(signInWithGoogle.fulfilled, state => {
+    builder.addCase(signUp.pending, state => {
       state.loading = true;
+      state.errors = '';
+    });
+    builder.addCase(signInWithGoogle.fulfilled, state => {
+      state.loading = false;
       state.userName = auth.currentUser?.displayName;
       state.userEmail = auth.currentUser?.email;
       state.userImage = auth.currentUser?.photoURL;
@@ -72,13 +79,11 @@ const userSlice = createSlice({
       state.userImage = auth.currentUser?.photoURL;
     });
     builder.addCase(signUp.fulfilled, state => {
+      state.loading = false;
+      state.errors = '';
       state.userEmail = auth.currentUser?.email;
       state.userName = auth.currentUser?.displayName;
       state.userImage = auth.currentUser?.photoURL;
-      state.loading = false;
-    });
-    builder.addCase(signUp.rejected, state => {
-      state.errors = 'Internal Error';
     });
     builder.addCase(catalogueUser.pending, state => {
       state.loading = true;
@@ -95,6 +100,10 @@ const userSlice = createSlice({
       state.errors = action.payload;
       state.loading = false;
     });
+    builder.addCase(signUp.rejected, (state, action) => {
+      state.errors = action.payload;
+      state.loading = false;
+    });
     //Matcher type
     builder.addMatcher(isAnyOf(signUp.pending), state => {
       state.loading = true;
@@ -103,4 +112,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const { clearStore } = userSlice.actions;
+export const { clearStore, setPasswordError } = userSlice.actions;
