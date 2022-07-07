@@ -12,7 +12,7 @@ const ChatBox = () => {
 
   let q = query(
     collection(db, `privateMessages/${chatRoom}/messages`),
-    orderBy('timestamp', 'desc'),
+    orderBy('timestamp', 'asc'),
     limit(20)
   );
 
