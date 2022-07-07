@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { ThemeType } from '../../../theme/defaultTheme';
 
 export const showGlobal = {
   hidden: {
@@ -92,13 +93,19 @@ export const StyledGlobalMessage = styled.div`
   background-color: 'violet';
 `;
 
-export const StyledImageHolder = styled.img`
+type StyledImageProps = {
+  img: string;
+};
+
+export const StyledImageHolder = styled.div<StyledImageProps>`
   grid-area: 1 / 1 / 3 / 2;
   height: 30px;
   width: 30px;
   align-self: center;
   border-radius: 50px;
   justify-self: center;
+  background: url(${props => props.img});
+  background-size: 100%;
 `;
 
 export const MessageContent = styled.p`

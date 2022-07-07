@@ -1,6 +1,7 @@
 export type ThemeType = {
   main: string;
   text: string;
+  img: string;
 };
 
 export const defaultTheme = {
