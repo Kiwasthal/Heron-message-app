@@ -14,6 +14,7 @@ type InitialStateProps = {
   currentChatroom: string | null;
   activePanel: null | string;
   currentMessageText: string | null;
+  loading: boolean;
 };
 
 const initialState: InitialStateProps = {
@@ -23,15 +24,13 @@ const initialState: InitialStateProps = {
   currentChatroom: null,
   activePanel: null,
   currentMessageText: null,
+  loading: false,
 };
 
 const privateSlice = createSlice({
   name: 'private',
   initialState,
   reducers: {
-    clearPrivate: state => {
-      state = initialState;
-    },
     getFriendInput: (state, action: PayloadAction<string>) => {
       state.friendInput = action.payload;
     },
@@ -50,8 +49,11 @@ const privateSlice = createSlice({
     storeCurrentTextValue: (state, action: PayloadAction<string>) => {
       state.currentMessageText = action.payload;
     },
-    logout: state => {
-      state = initialState;
+    setPrivateLoadingStart: state => {
+      state.loading = true;
+    },
+    setPrivateLoadinEnd: state => {
+      state.loading = false;
     },
   },
 });
@@ -63,5 +65,6 @@ export const {
   getUserAcceptedFriendList,
   getCurrentChatRoomId,
   storeCurrentTextValue,
-  clearPrivate,
+  setPrivateLoadingStart,
+  setPrivateLoadinEnd,
 } = privateSlice.actions;
