@@ -14,7 +14,7 @@ type MessageProps = {
 const GlobalMessageField = (props: MessageProps) => {
   return (
     <StyledGlobalMessage>
-      <StyledImageHolder src={props.image} />
+      <StyledImageHolder img={props.image} />
       <div>{props.name}</div>
       <MessageContent>{props.text}</MessageContent>
     </StyledGlobalMessage>
