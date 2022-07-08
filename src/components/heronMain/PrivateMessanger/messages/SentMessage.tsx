@@ -4,6 +4,7 @@ import {
   StyledMessageBubble,
   StyledMessageInner,
   StyledMessageOuter,
+  StyledNameSpan,
 } from '../../../../styledComponents/heronMain/privateMessanger/styledPrivateMessanger';
 
 type MessageProps = {
@@ -18,7 +19,10 @@ const SentMessage = (props: MessageProps) => {
       <StyledMessageOuter>
         <StyledMessageAvatar img={props.image} />
         <StyledMessageInner>
-          <StyledMessageBubble>{props.text}</StyledMessageBubble>
+          <StyledMessageBubble>
+            <StyledNameSpan>{props.name} : </StyledNameSpan>
+            {props.text}
+          </StyledMessageBubble>
         </StyledMessageInner>
       </StyledMessageOuter>
     </StyledMessage>

@@ -11,12 +11,11 @@ import {
 import { StyledSendPrivateMessageButton } from '../../../styledComponents/heronMain/privateMessanger/styledPrivateMessanger';
 
 type ButtonProps = {
-  value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  messageText: string;
 };
 
-const SendMessageButton = (props: ButtonProps) => {
-  const { data, sendMessage } = useMessageHandler(props.value);
+const SendMessageButton = ({ messageText }: ButtonProps) => {
+  const { data, sendMessage } = useMessageHandler(messageText);
   const chatId = useAppSelector(state => state.private.currentChatroom);
   const dispatch = useAppDispatch();
 

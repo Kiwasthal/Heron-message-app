@@ -7,7 +7,9 @@ type ImageProps = {
   img: string;
 };
 
-export const StyledMessage = styled.div``;
+export const StyledMessage = styled.div`
+  width: calc(100% -267px);
+`;
 
 export const StyledMessageOuter = styled.div`
   display: flex;
@@ -21,7 +23,14 @@ export const StyledMessageOuterReversed = styled.div`
   padding-right: 20px;
 `;
 
+export const StyledNameSpan = styled.span`
+  color: ${props => props.theme.text};
+  font-weight: 600;
+  font-style: italic;
+`;
+
 export const StyledMessageInner = styled.div`
+  width: 120%;
   flex: 1;
   display: flex;
 `;
@@ -46,27 +55,26 @@ export const StyledMessageAvatar = styled.div<ImageProps>`
 
 export const StyledMessageBubble = styled.div`
   margin-left: 20px;
-  max-width: calc(100% - 267px);
-  overflow-wrap: break-word;
-  background-color: red;
+  max-width: calc(100% -267px);
+  overflow-wrap: anywhere;
+  background-image: ${props => props.theme.chatbox.sent};
+  color: ${props => props.theme.text};
   padding: 12px;
   border-radius: 10px;
   font-size: 18px;
   max-height: 100px;
-  color: #fff;
 `;
 
 export const StyledReceivedBubble = styled.div`
   margin-right: 20px;
-  margin-left: 20px;
   max-width: calc(100% - 267px);
-  overflow-wrap: break-word;
-  background-color: blue;
+  overflow-wrap: anywhere;
+  background-image: ${props => props.theme.chatbox.received};
+  color: ${props => props.theme.text};
   padding: 12px;
   border-radius: 10px;
   font-size: 18px;
   max-height: 100px;
-  color: #fff;
 `;
 
 //////////////////////////////////////////////////////////////
@@ -124,8 +132,9 @@ export const StyledChatBox = styled.div`
   background-color: #fff;
   height: 67vh;
   display: grid;
-  padding: 20px;
+  padding: 20px 0px 20px 20px;
   grid-template-rows: auto;
+  width: 100%;
   gap: 20px;
   overflow-y: scroll;
   overflow-x: hidden;

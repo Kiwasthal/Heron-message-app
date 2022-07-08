@@ -20,15 +20,16 @@ export const StyledThemeDropmenu = styled(StyledDropContainer)`
 export const AnimatedThemeSelection = styled(motion.li)`
   text-align: center;
   list-style: none;
-  background-color: #e11d48;
+  //test
+  background-color: ${props => props.theme.dropmenu.main};
   padding: 10px;
   font-weight: 600;
   font-size: 20px;
   width: 100%;
-  color: #fff;
+  color: ${props => props.theme.text};
   transition: all 200ms;
   &:hover {
-    background-color: yellow;
+    background-color: ${props => props.theme.dropmenu.hovered};
   }
 `;
 

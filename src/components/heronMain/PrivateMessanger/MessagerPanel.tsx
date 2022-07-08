@@ -9,8 +9,8 @@ const MessangerPanel = () => {
   return (
     <StyledMessangerPanel>
       <ChatBox />
-      <MessageTextarea value={message} setValue={setMessage} />
-      <SendMessageButton value={message} setValue={setMessage} />
+      <MessageTextarea messageText={message} setMessageText={setMessage} />
+      <SendMessageButton messageText={message} />
     </StyledMessangerPanel>
   );
 };

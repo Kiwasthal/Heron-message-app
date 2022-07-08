@@ -1,19 +1,14 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import {
-  useAppDispatch,
-  useAppSelector,
-  useMessageHandler,
-} from '../../../app/hooks';
-import { useAddPrivateMessageMutation } from '../../../features/api/firebaseApi';
+import { useAppSelector, useMessageHandler } from '../../../app/hooks';
 import { StyledPrivateTextarea } from '../../../styledComponents/heronMain/privateMessanger/styledPrivateMessanger';
 
 type TextAreaProps = {
-  value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  messageText: string;
+  setMessageText: Dispatch<SetStateAction<string>>;
 };
 
-const MessageTextarea = (props: TextAreaProps) => {
-  const { data, sendMessage } = useMessageHandler(props.value);
+const MessageTextarea = ({ messageText, setMessageText }: TextAreaProps) => {
+  const { data, sendMessage } = useMessageHandler(messageText);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter') sendMessage();
@@ -22,16 +17,16 @@ const MessageTextarea = (props: TextAreaProps) => {
   const loading = useAppSelector(state => state.private.loading);
   const chatroom = useAppSelector(state => state.private.currentChatroom);
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    props.setValue(e.currentTarget.value);
+    setMessageText(e.currentTarget.value);
   };
 
   useEffect(() => {
-    if (loading || data.status === 'fulfilled') props.setValue('');
+    if (loading || data.status === 'fulfilled') setMessageText('');
   }, [loading, data.status]);
 
   return (
     <StyledPrivateTextarea
-      value={props.value}
+      value={messageText}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
       disabled={chatroom ? false : true}
