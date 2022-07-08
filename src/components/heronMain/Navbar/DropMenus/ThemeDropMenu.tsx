@@ -28,18 +28,22 @@ const ThemeDropMenu = () => {
     }));
   }, []);
   const setDarkTheme = () => {
+    localStorage.setItem('theme', 'dark');
     dispatch(setThemeDark());
   };
 
   const setDefaultTheme = () => {
+    localStorage.setItem('theme', 'default');
     dispatch(setThemeDefault());
   };
 
   const setLightTheme = () => {
+    localStorage.setItem('theme', 'light');
     dispatch(setThemeLight());
   };
 
   const setSeaTheme = () => {
+    localStorage.setItem('theme', 'sea');
     dispatch(setThemeSea());
   };
 

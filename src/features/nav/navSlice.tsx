@@ -64,6 +64,24 @@ const navSlice = createSlice({
     setThemeSea: state => {
       state.theme = seaTheme;
     },
+    retrieveLStheme: (state, action) => {
+      switch (action.payload) {
+        case 'default':
+          state.theme = defaultTheme;
+          break;
+        case 'light':
+          state.theme = lightTheme;
+          break;
+        case 'dark':
+          state.theme = darkTheme;
+          break;
+        case 'sea':
+          state.theme = seaTheme;
+          break;
+        default:
+          state.theme = defaultTheme;
+      }
+    },
   },
 });
 
@@ -80,4 +98,5 @@ export const {
   setThemeDefault,
   setThemeLight,
   setThemeSea,
+  retrieveLStheme,
 } = navSlice.actions;

@@ -1,14 +1,21 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import AnimatedRoutes from './components/animatedRoutes/animatedRoutes';
-import './App.css';
 import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from './theme/defaultTheme';
-// import { useAuthState } from 'react-firebase-hooks/auth';
-import { useState } from 'react';
-import { useAppSelector } from './app/hooks';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import './App.css';
+import { retrieveLStheme } from './features/nav/navSlice';
 
 function App() {
   const theme = useAppSelector(state => state.nav.theme);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const lsTheme = localStorage.getItem('theme');
+    console.log(lsTheme);
+    if (lsTheme != null) dispatch(retrieveLStheme(lsTheme));
+  });
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
