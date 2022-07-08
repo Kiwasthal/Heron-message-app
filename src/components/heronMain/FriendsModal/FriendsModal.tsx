@@ -14,6 +14,9 @@ import {
   StyledFriendsModal,
   StyledAddFriendInput,
   dropFmodal,
+  StyledModalHeader,
+  StyledSearchFriendsButton,
+  StyledSearchErrorOutput,
 } from '../../../styledComponents/heronMain/nav/friendsModal/styledFriendsModal';
 import { CloseFriendsModal } from '../../../styledComponents/heronMain/nav/friendsModal/styledFriendsModal';
 
@@ -81,15 +84,15 @@ const FriendsModal = () => {
           exit="exit"
         >
           <CloseFriendsModal onClick={closeModal}>+</CloseFriendsModal>
-          <p>Search by email</p>
+          <StyledModalHeader>Search by email</StyledModalHeader>
           <StyledAddFriendInput value={inputValue} onChange={handleChange} />
-          <button
+          <StyledSearchErrorOutput>{errMsg}</StyledSearchErrorOutput>
+          <StyledSearchFriendsButton
             onClick={sendRequest}
             disabled={validation.status === 'pending'}
           >
-            Add
-          </button>
-          <div>{errMsg}</div>
+            ADD
+          </StyledSearchFriendsButton>
         </StyledFriendsModal>
       )}
     </AnimatePresence>

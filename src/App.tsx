@@ -3,8 +3,8 @@ import AnimatedRoutes from './components/animatedRoutes/animatedRoutes';
 import { ThemeProvider } from 'styled-components';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from './app/hooks';
-import './App.css';
 import { retrieveLStheme } from './features/nav/navSlice';
+import './App.css';
 
 function App() {
   const theme = useAppSelector(state => state.nav.theme);
@@ -12,7 +12,6 @@ function App() {
 
   useEffect(() => {
     const lsTheme = localStorage.getItem('theme');
-    console.log(lsTheme);
     if (lsTheme != null) dispatch(retrieveLStheme(lsTheme));
   });
 

@@ -139,6 +139,19 @@ export const StyledChatBox = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   background-color: ${props => props.theme.chatbox.background};
+  ::-webkit-scrollbar {
+    background-color: ${props => props.theme.main.background};
+    width: 1rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${props => props.theme.main.elements};
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: ${props => props.theme.dropmenu.main};
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background-color: ${props => props.theme.dropmenu.hovered};
+  }
 `;
 
 export const StyledPrivateTextarea = styled.textarea`

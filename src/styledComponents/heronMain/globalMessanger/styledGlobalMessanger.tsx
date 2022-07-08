@@ -29,13 +29,14 @@ export const StyledGlobalMessangerContainer = styled(motion.div)`
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   margin-left: 40px;
-  background-color: violet;
+  background-color: ${props => props.theme.chatbox.background};
   width: 60%;
   display: grid;
   grid-template-columns: 75% 25%;
   grid-template-rows: 92% 8%;
   align-self: center;
   justify-self: center;
+  box-shadow: 0px 7px 8px rgba(0, 0, 0, 0.6);
 `;
 
 export const StyledGlobalMessageView = styled.ul`
@@ -49,17 +50,17 @@ export const StyledGlobalMessageView = styled.ul`
   padding: 10px;
   gap: 3%;
   ::-webkit-scrollbar {
-    background-color: peachpuff;
+    background-color: ${props => props.theme.main.background};
     width: 1rem;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #a21caf;
+    background-color: ${props => props.theme.main.elements};
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: coral;
+    background-color: ${props => props.theme.dropmenu.main};
   }
   ::-webkit-scrollbar-thumb:active {
-    background-color: orangered;
+    background-color: ${props => props.theme.dropmenu.hovered};
   }
 `;
 
@@ -67,7 +68,7 @@ export const StyledMessageTextArea = styled.textarea`
   grid-area: 2 / 1 / 3 /2;
   resize: none;
   outline: none;
-  border: none;
+  border: 2px solid ${props => props.theme.main.elements};
   transition: all 200ms ease-in;
   :hover {
   }
@@ -82,6 +83,20 @@ export const StyledMessageTextArea = styled.textarea`
 export const StyledGlobalMessageButton = styled.button`
   grid-area: 2 / 2 / 3 / 3;
   height: 100%;
+  background-color: ${props => props.theme.main.elements};
+  outline: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: all 200ms ease-in;
+  color: ${props => props.theme.text};
+  transform: scale(1);
+  :hover {
+    background-color: ${props => props.theme.secondary.elements};
+  }
+  :active {
+    transform: scale(0.9);
+  }
 `;
 
 export const StyledGlobalMessage = styled.div`
@@ -90,7 +105,7 @@ export const StyledGlobalMessage = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: 10% 70%;
-  background-color: 'violet';
+  background-color: ${props => props.theme.chatbox.background};
 `;
 
 type StyledImageProps = {
