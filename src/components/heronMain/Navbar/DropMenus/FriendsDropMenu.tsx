@@ -3,6 +3,8 @@ import { showFriendsElement } from '../../../../features/nav/navSlice';
 import { StyledDropContainer } from '../../../../styledComponents/heronMain/nav/dropmenus/StyledDropMenus';
 import { AddFriendsElement } from './DropContent';
 import AddFriendCard from './AddFriendCard';
+import { useAnimation } from 'framer-motion';
+import { useEffect } from 'react';
 
 export const FriendsDropContainer = () => {
   const acceptedFriendList = useAppSelector(
@@ -12,12 +14,34 @@ export const FriendsDropContainer = () => {
   const dispatch = useAppDispatch();
   const clearDisplay = () => dispatch(showFriendsElement());
 
+  const controls = useAnimation();
+  useEffect(() => {
+    controls.set({
+      opacity: 0,
+      x: '30vh',
+    });
+  }, []);
+
+  useEffect(() => {
+    controls.start(i => ({
+      opacity: 1,
+      x: '0vh',
+      transition: {
+        duration: 0.25,
+        type: 'spring',
+        damping: 20,
+        stiffness: 400,
+        delay: i * 0.1,
+      },
+    }));
+  }, []);
+
   return (
     <StyledDropContainer onMouseLeave={clearDisplay}>
       <AddFriendsElement />
       {friendList &&
         friendList.length > 0 &&
-        friendList.map(friendRequest => {
+        friendList.map((friendRequest, index) => {
           let condition = true;
           if (!friendRequest.name) return;
           acceptedFriendList &&
@@ -26,7 +50,12 @@ export const FriendsDropContainer = () => {
             });
           if (condition)
             return (
-              <AddFriendCard key={friendRequest.name} data={friendRequest} />
+              <AddFriendCard
+                key={friendRequest.name}
+                data={friendRequest}
+                value={controls}
+                custom={index}
+              />
             );
         })}
     </StyledDropContainer>

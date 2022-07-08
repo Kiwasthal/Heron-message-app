@@ -20,7 +20,6 @@ export const StyledThemeDropmenu = styled(StyledDropContainer)`
 export const AnimatedThemeSelection = styled(motion.li)`
   text-align: center;
   list-style: none;
-  //test
   background-color: ${props => props.theme.dropmenu.main};
   padding: 10px;
   font-weight: 600;
@@ -38,21 +37,46 @@ export const StyledAddFriends = styled(motion.div)`
   padding: 20px;
   border-radius: 20px;
   font-size: 24px;
-  color: #fff;
+  color: ${props => props.theme.text};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  background-color: ${props => props.theme.dropmenu.main};
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
 `;
 
 export const StyledAddFriendCard = styled(motion.div)`
-  height: 3vh;
+  height: auto;
   padding: 20px;
   border-radius: 20px;
-  font-size: 24px;
-  color: #fff;
+  gap: 12px;
+  width: auto;
+  font-size: 14px;
+  font-weight: 600;
+  color: ${props => props.theme.text};
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: red;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+  background-color: ${props => props.theme.dropmenu.main};
+  &:hover {
+    background-color: ${props => props.theme.dropmenu.hovered};
+  }
+`;
+
+export const StyledAcceptFriendButton = styled.button`
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  background-color: ${props => props.theme.main.elements};
+  color: ${props => props.theme.text};
+  padding: 2px 16px;
+  transform: scale(1);
+  transition: all 300ms ease;
+  outline: none;
+  border: none;
+  :hover {
+    transform: scale(1.1);
+  }
 `;

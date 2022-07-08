@@ -1,7 +1,24 @@
 export type ThemeType = {
-  main: string;
+  main: {
+    elements: string;
+    background: string;
+  };
+  secondary: {
+    elements: string;
+  };
   text: string;
-  img: string;
+  icons: string;
+  navborder: string;
+  dropmenu: {
+    main: string;
+    hovered: string;
+  };
+
+  chatbox: {
+    background: string;
+    sent: string;
+    received: string;
+  };
 };
 
 export const defaultTheme = {
