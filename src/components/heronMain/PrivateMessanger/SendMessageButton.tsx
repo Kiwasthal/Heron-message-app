@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useAddPrivateMessageMutation } from '../../../features/api/firebaseApi';
 import {
@@ -7,8 +7,13 @@ import {
 } from '../../../features/messanger/privateSlice';
 import { StyledSendPrivateMessageButton } from '../../../styledComponents/heronMain/privateMessanger/styledPrivateMessanger';
 
-const SendMessageButton = () => {
-  const message = useAppSelector(state => state.private.currentMessageText);
+type ButtonProps = {
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+};
+
+const SendMessageButton = (props: ButtonProps) => {
+  const message = props.value;
   const userName = useAppSelector(state => state.user.userName);
   const userEmail = useAppSelector(state => state.user.userEmail);
   const userImage = useAppSelector(state => state.user.userImage);
@@ -20,7 +25,6 @@ const SendMessageButton = () => {
     if (data.status === 'pending') dispatch(setPrivateLoadingStart());
     if (data.status === 'fulfilled') dispatch(setPrivateLoadinEnd());
   }, [data.status]);
-  console.log(chatId);
 
   const messageData = {
     chatId: chatId,
@@ -34,6 +38,7 @@ const SendMessageButton = () => {
     if (!message) return;
     await addMessage(messageData);
   };
+
   return (
     <StyledSendPrivateMessageButton
       onClick={sendMessage}

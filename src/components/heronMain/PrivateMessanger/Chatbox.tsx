@@ -12,7 +12,7 @@ const ChatBox = () => {
 
   let q = query(
     collection(db, `privateMessages/${chatRoom}/messages`),
-    orderBy('timestamp', 'asc'),
+    orderBy('timestamp', 'desc'),
     limit(20)
   );
 
@@ -22,7 +22,7 @@ const ChatBox = () => {
     <StyledChatBox>
       {messages &&
         messages.length > 0 &&
-        messages.map(message => {
+        messages.reverse().map(message => {
           if (message.email === userEmail)
             return (
               <SentMessage

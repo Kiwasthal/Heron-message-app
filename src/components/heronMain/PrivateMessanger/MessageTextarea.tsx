@@ -1,30 +1,27 @@
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { storeCurrentTextValue } from '../../../features/messanger/privateSlice';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useAppSelector } from '../../../app/hooks';
 import { StyledPrivateTextarea } from '../../../styledComponents/heronMain/privateMessanger/styledPrivateMessanger';
 
-const MessageTextarea = () => {
-  const [messageValue, setMessageValue] = useState<string>('');
+type TextAreaProps = {
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+};
+
+const MessageTextarea = (props: TextAreaProps) => {
   const loading = useAppSelector(state => state.private.loading);
   const chatroom = useAppSelector(state => state.private.currentChatroom);
-  const dispatch = useAppDispatch();
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
-    setMessageValue(e.currentTarget.value);
-  const pushMessageToStore = () =>
-    dispatch(storeCurrentTextValue(messageValue));
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    props.setValue(e.currentTarget.value);
+  };
 
   useEffect(() => {
-    if (loading) {
-      setMessageValue('');
-      dispatch(storeCurrentTextValue(''));
-    }
+    if (loading) props.setValue('');
   }, [loading]);
 
   return (
     <StyledPrivateTextarea
-      value={messageValue}
+      value={props.value}
       onChange={handleChange}
-      onBlur={pushMessageToStore}
       disabled={chatroom ? false : true}
     />
   );
