@@ -1,5 +1,9 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useMessageHandler,
+} from '../../../app/hooks';
 import { useAddPrivateMessageMutation } from '../../../features/api/firebaseApi';
 import { StyledPrivateTextarea } from '../../../styledComponents/heronMain/privateMessanger/styledPrivateMessanger';
 
@@ -9,26 +13,7 @@ type TextAreaProps = {
 };
 
 const MessageTextarea = (props: TextAreaProps) => {
-  const message = props.value;
-  const userName = useAppSelector(state => state.user.userName);
-  const userEmail = useAppSelector(state => state.user.userEmail);
-  const userImage = useAppSelector(state => state.user.userImage);
-  const chatId = useAppSelector(state => state.private.currentChatroom);
-  const dispatch = useAppDispatch();
-  const [addMessage, data] = useAddPrivateMessageMutation();
-
-  const messageData = {
-    chatId: chatId,
-    text: message,
-    name: userName,
-    email: userEmail,
-    profilePicUrl: userImage,
-  };
-
-  const sendMessage = async () => {
-    if (!message) return;
-    await addMessage(messageData);
-  };
+  const { data, sendMessage } = useMessageHandler(props.value);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter') sendMessage();

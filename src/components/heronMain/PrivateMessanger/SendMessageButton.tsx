@@ -1,6 +1,9 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { useAddPrivateMessageMutation } from '../../../features/api/firebaseApi';
+import {
+  useAppDispatch,
+  useAppSelector,
+  useMessageHandler,
+} from '../../../app/hooks';
 import {
   setPrivateLoadinEnd,
   setPrivateLoadingStart,
@@ -13,31 +16,14 @@ type ButtonProps = {
 };
 
 const SendMessageButton = (props: ButtonProps) => {
-  const message = props.value;
-  const userName = useAppSelector(state => state.user.userName);
-  const userEmail = useAppSelector(state => state.user.userEmail);
-  const userImage = useAppSelector(state => state.user.userImage);
+  const { data, sendMessage } = useMessageHandler(props.value);
   const chatId = useAppSelector(state => state.private.currentChatroom);
   const dispatch = useAppDispatch();
-  const [addMessage, data] = useAddPrivateMessageMutation();
 
   useEffect(() => {
     if (data.status === 'pending') dispatch(setPrivateLoadingStart());
     if (data.status === 'fulfilled') dispatch(setPrivateLoadinEnd());
   }, [data.status]);
-
-  const messageData = {
-    chatId: chatId,
-    text: message,
-    name: userName,
-    email: userEmail,
-    profilePicUrl: userImage,
-  };
-
-  const sendMessage = async () => {
-    if (!message) return;
-    await addMessage(messageData);
-  };
 
   return (
     <StyledSendPrivateMessageButton
