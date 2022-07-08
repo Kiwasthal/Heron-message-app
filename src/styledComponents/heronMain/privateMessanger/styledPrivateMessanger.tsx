@@ -78,6 +78,7 @@ export const StyledPrivateMessangerContainer = styled(motion.div)`
   justify-self: center;
   display: grid;
   grid-template-columns: 12% 88%;
+  box-shadow: 0px 5px 5px black;
 `;
 
 export const StyledFriendsBar = styled.div`
@@ -87,8 +88,9 @@ export const StyledFriendsBar = styled.div`
   display: flex;
   flex-direction: column;
   flex: auto;
+  z-index: 1001;
   justify-content: flex-start;
-  border: 1px solid black;
+  box-shadow: 8px 0px 12px rgba(0, 0, 0, 0.5);
 `;
 
 export const StyledChatBarCard = styled.div`
@@ -127,6 +129,7 @@ export const StyledChatBox = styled.div`
   gap: 20px;
   overflow-y: scroll;
   overflow-x: hidden;
+  background-color: ${props => props.theme.chatbox.background};
 `;
 
 export const StyledPrivateTextarea = styled.textarea`
@@ -141,7 +144,19 @@ export const StyledSendPrivateMessageButton = styled.button`
   width: 100%;
   grid-area: 2 / 2/ 3 / 3;
   background-color: ${props => props.theme.main.elements};
+  outline: none;
+  border: none;
   color: #fff;
+  cursor: pointer;
+  transition: all 200ms ease-in;
+  color: ${props => props.theme.text};
+  transform: scale(1);
+  :hover {
+    background-color: ${props => props.theme.secondary.elements};
+  }
+  :active {
+    transform: scale(0.9);
+  }
 `;
 
 export const showPrivate = {

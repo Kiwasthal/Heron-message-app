@@ -9,7 +9,13 @@ export const defaultTheme = {
     elements: '#e879f9',
     background: '#f0abfc',
   },
+  secondary: {
+    elements: '#a21caf',
+  },
   text: '#fff',
   icons: '#fff',
   navborder: '#fff',
+  chatbox: {
+    background: '#f5d0fe',
+  },
 };

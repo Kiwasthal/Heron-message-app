@@ -46,9 +46,6 @@ const privateSlice = createSlice({
     setActivePanel: (state, action) => {
       state.activePanel = action.payload;
     },
-    storeCurrentTextValue: (state, action: PayloadAction<string>) => {
-      state.currentMessageText = action.payload;
-    },
     setPrivateLoadingStart: state => {
       state.loading = true;
     },
@@ -64,7 +61,6 @@ export const {
   getUserPendingFriendList,
   getUserAcceptedFriendList,
   getCurrentChatRoomId,
-  storeCurrentTextValue,
   setPrivateLoadingStart,
   setPrivateLoadinEnd,
 } = privateSlice.actions;
