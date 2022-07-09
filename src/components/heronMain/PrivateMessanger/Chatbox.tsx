@@ -1,4 +1,11 @@
-import { collection, limit, orderBy, query } from 'firebase/firestore';
+import {
+  collection,
+  DocumentData,
+  limit,
+  orderBy,
+  query,
+} from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAppSelector } from '../../../app/hooks';
 import { db } from '../../../firebase/firebase';
@@ -21,8 +28,7 @@ const ChatBox = () => {
   return (
     <StyledChatBox>
       {messages &&
-        messages.length > 0 &&
-        messages.reverse().map(message => {
+        messages.map(message => {
           if (message.email === userEmail)
             return (
               <SentMessage

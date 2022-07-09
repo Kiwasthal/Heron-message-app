@@ -22,7 +22,7 @@ const GlobalMessageView = (props: GlobalMessageProps) => {
       {recentMessages &&
         recentMessages
           .reverse()
-          .map((message, index) => (
+          .map(message => (
             <GlobalMessageField
               key={message.id}
               text={message.text}

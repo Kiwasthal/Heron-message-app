@@ -131,9 +131,9 @@ export const StyledChatBox = styled.div`
   grid-area: 1 / 1 / 2 / 3;
   background-color: #fff;
   height: 67vh;
-  display: grid;
+  display: flex;
+  flex-direction: column-reverse;
   padding: 20px 0px 20px 20px;
-  grid-template-rows: auto;
   width: 100%;
   gap: 20px;
   overflow-y: scroll;

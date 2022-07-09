@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { ThemeType } from '../../../theme/defaultTheme';
 
 export const showGlobal = {
   hidden: {
