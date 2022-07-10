@@ -48,7 +48,10 @@ export const useMessageHandler = (messageText: string) => {
   };
 
   const sendMessage = async () => {
-    if (!message) return;
+    function onlySpaces(message: string) {
+      return message.trim().length === 0;
+    }
+    if (onlySpaces(message) || data.status === 'pending') return;
     await addMessage(messageData);
   };
 
