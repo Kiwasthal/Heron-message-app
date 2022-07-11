@@ -1,6 +1,4 @@
-import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { firebaseApi, useAddPrivateMessageMutation } from '../api/firebaseApi';
 
 type InitialStateProps = {
   globalChatInput: string | null;

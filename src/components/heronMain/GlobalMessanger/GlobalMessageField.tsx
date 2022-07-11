@@ -1,5 +1,4 @@
 import { Timestamp } from 'firebase/firestore';
-import { useAppSelector } from '../../../app/hooks';
 import { StyledImageHolder } from '../../../styledComponents/heronMain/globalMessanger/styledGlobalMessanger';
 import { MessageContent } from '../../../styledComponents/heronMain/globalMessanger/styledGlobalMessanger';
 import { StyledGlobalMessage } from '../../../styledComponents/heronMain/globalMessanger/styledGlobalMessanger';

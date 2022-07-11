@@ -31,7 +31,7 @@ function LandingView() {
   useEffect(() => {
     dispatch(logOut());
     dispatch(clearStore());
-  }, []);
+  }, [dispatch]);
 
   return (
     <LandingHolder>

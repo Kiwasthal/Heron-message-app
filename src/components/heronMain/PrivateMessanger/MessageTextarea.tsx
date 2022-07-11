@@ -22,7 +22,7 @@ const MessageTextarea = ({ messageText, setMessageText }: TextAreaProps) => {
 
   useEffect(() => {
     if (loading || data.status === 'fulfilled') setMessageText('');
-  }, [loading, data.status]);
+  }, [loading, data.status, setMessageText]);
 
   return (
     <StyledPrivateTextarea

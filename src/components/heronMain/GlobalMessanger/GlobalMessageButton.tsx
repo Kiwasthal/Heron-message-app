@@ -27,7 +27,7 @@ const GlobalMessageButton = (props: ButtonProps) => {
   useEffect(() => {
     if (data.status === 'pending') dispatch(setGlobalLoadingStart());
     if (data.status === 'fulfilled') dispatch(setGlobalLoadingEnd());
-  }, [data.status]);
+  }, [data.status, dispatch]);
 
   useEffect(() => {
     if (props.scroll != null)

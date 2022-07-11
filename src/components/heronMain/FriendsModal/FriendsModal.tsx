@@ -1,10 +1,6 @@
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import {
-  useAppDispatch,
-  useAppSelector,
-  useFriendRequests,
-} from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { closeFriendsModal } from '../../../features/nav/navSlice';
 import {
   useAddUserValidationMutation,

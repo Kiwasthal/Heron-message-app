@@ -1,11 +1,4 @@
-import {
-  collection,
-  DocumentData,
-  limit,
-  orderBy,
-  query,
-} from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { collection, limit, orderBy, query } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAppSelector } from '../../../app/hooks';
 import { db } from '../../../firebase/firebase';

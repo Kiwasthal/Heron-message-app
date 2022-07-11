@@ -12,7 +12,6 @@ export type SignUpButtonProps = {
 
 export const SignUpButton = ({ children }: SignUpButtonProps) => {
   const loading = useAppSelector(state => state.user.loading);
-  const error = useAppSelector(state => state.user.errors);
   const {
     userNameInput,
     userConfirmPassword,

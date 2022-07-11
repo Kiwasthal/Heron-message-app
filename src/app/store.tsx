@@ -2,7 +2,6 @@ import {
   AnyAction,
   combineReducers,
   configureStore,
-  getDefaultMiddleware,
   Reducer,
 } from '@reduxjs/toolkit';
 import manualSlice from '../features/user/manualSlice';
@@ -24,7 +23,6 @@ const combinedReducer = combineReducers({
 
 const rootReducer: Reducer = (state: RootState, action: AnyAction) => {
   if (action.type === 'user/clearStore') state = {} as RootState;
-  // if (action.type === 'private/clearPrivate') state = {} as RootState;
   return combinedReducer(state, action);
 };
 
@@ -37,5 +35,4 @@ const store = configureStore({
 export default store;
 setupListeners(store.dispatch);
 export type RootState = ReturnType<typeof combinedReducer>;
-// export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

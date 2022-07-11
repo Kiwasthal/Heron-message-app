@@ -28,7 +28,7 @@ export const useFriendRequests = () => {
       dispatch(getUserPendingFriendList(friendList[0].friends));
     if (friendList && friendList.length > 0)
       dispatch(getUserAcceptedFriendList(friendList[0].acceptedFriends));
-  }, [friendRequests]);
+  }, [friendRequests, dispatch]);
 };
 
 export const useMessageHandler = (messageText: string) => {

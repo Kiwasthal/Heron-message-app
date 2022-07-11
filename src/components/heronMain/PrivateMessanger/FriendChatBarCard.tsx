@@ -1,6 +1,6 @@
 import { collection, query, where } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch } from '../../../app/hooks';
 import { getCurrentChatRoomId } from '../../../features/messanger/privateSlice';
 import { db } from '../../../firebase/firebase';
 import {

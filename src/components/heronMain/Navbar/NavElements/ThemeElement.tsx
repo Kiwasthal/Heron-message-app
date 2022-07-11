@@ -3,7 +3,6 @@ import { faEyedropper } from '@fortawesome/free-solid-svg-icons';
 import { StyledNavElement } from '../../../../styledComponents/heronMain/nav/navElements/styledElements';
 import { ElementTag } from '../../../../styledComponents/heronMain/nav/navElements/styledElements';
 import { AnimationControls } from 'framer-motion';
-import { StyledDropContainer } from '../../../../styledComponents/heronMain/nav/dropmenus/StyledDropMenus';
 import ThemeDropMenu from '../DropMenus/ThemeDropMenu';
 import { useAppDispatch, useAppSelector } from '../../../../app/hooks';
 import {

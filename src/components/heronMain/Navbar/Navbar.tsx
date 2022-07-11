@@ -16,7 +16,7 @@ const Navbar = () => {
       opacity: 1,
       y: '-40vh',
     });
-  }, []);
+  }, [controls]);
 
   useEffect(() => {
     controls.start(i => ({
@@ -24,7 +24,7 @@ const Navbar = () => {
       y: '0vh',
       transition: { delay: i * 0.5 },
     }));
-  }, []);
+  }, [controls]);
 
   return (
     <StyledNav

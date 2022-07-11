@@ -20,7 +20,7 @@ export const FriendsDropContainer = () => {
       opacity: 0,
       x: '30vh',
     });
-  }, []);
+  }, [controls]);
 
   useEffect(() => {
     controls.start(i => ({
@@ -34,7 +34,7 @@ export const FriendsDropContainer = () => {
         delay: i * 0.1,
       },
     }));
-  }, []);
+  }, [controls]);
 
   return (
     <StyledDropContainer onMouseLeave={clearDisplay}>

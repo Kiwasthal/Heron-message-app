@@ -18,7 +18,7 @@ const ThemeDropMenu = () => {
       opacity: 0,
       x: '40vh',
     });
-  }, []);
+  }, [controls]);
 
   useEffect(() => {
     controls.start(i => ({
@@ -26,7 +26,7 @@ const ThemeDropMenu = () => {
       x: '0vh',
       transition: { delay: i * 0.1 },
     }));
-  }, []);
+  }, [controls]);
   const setDarkTheme = () => {
     localStorage.setItem('theme', 'dark');
     dispatch(setThemeDark());

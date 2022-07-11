@@ -16,7 +16,7 @@ type AddFriendProps = {
 };
 
 const AddFriendCard = (props: AddFriendProps) => {
-  const [acceptFriendRequest, error] = useAcceptFriendRequestMutation();
+  const [acceptFriendRequest] = useAcceptFriendRequestMutation();
   const userEmail = useAppSelector(state => state.user.userEmail);
 
   const addFriendData = {

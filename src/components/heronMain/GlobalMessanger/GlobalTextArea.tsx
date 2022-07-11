@@ -16,7 +16,7 @@ const GlobalTextArea = () => {
       setText('');
       dispatch(getGlobalMessage(''));
     }
-  }, [loading]);
+  }, [loading, dispatch]);
 
   return (
     <StyledMessageTextArea

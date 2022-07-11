@@ -13,7 +13,7 @@ const AnimatedRoutes = () => {
   const location = useLocation();
   useEffect(() => {
     if (user) navigate('/heron');
-  }, [user]);
+  }, [user, navigate]);
   return (
     <AnimatePresence exitBeforeEnter>
       <Routes location={location} key={location.pathname}>
