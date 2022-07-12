@@ -22,7 +22,7 @@ const SendMessageButton = ({ messageText }: ButtonProps) => {
   useEffect(() => {
     if (data.status === 'pending') dispatch(setPrivateLoadingStart());
     if (data.status === 'fulfilled') dispatch(setPrivateLoadinEnd());
-  }, [data.status]);
+  }, [data.status, dispatch]);
 
   return (
     <StyledSendPrivateMessageButton

@@ -36,19 +36,18 @@ const FriendsModal = () => {
   const [sendFriendRequest, data] = useSendFriendRequestMutation();
   const [validateRequest, validation] = useAddUserValidationMutation();
 
-  const requestData = {
-    userName,
-    userEmail,
-    friendEmail: inputValue,
-  };
-
   useEffect(() => {
+    const requestData = {
+      userName,
+      userEmail,
+      friendEmail: inputValue,
+    };
     if (validation.status === 'fulfilled' && !validation.data)
       setErrMsg('Could Not find User');
     if (validation.status === 'fulfilled' && validation.data) {
       sendFriendRequest(requestData);
     }
-  }, [validation.status]);
+  }, [validation, sendFriendRequest, inputValue, userEmail, userName]);
 
   useEffect(() => {
     if (data.data === 'resolved') setErrMsg('User succesfully Added');

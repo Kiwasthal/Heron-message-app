@@ -43,10 +43,11 @@ export const FriendsDropContainer = () => {
         friendList.length > 0 &&
         friendList.map((friendRequest, index) => {
           let condition = true;
-          if (!friendRequest.name) return;
+          if (!friendRequest.name) return null;
           acceptedFriendList &&
             acceptedFriendList.filter(friend => {
               if (friend.email === friendRequest.email) condition = false;
+              return null;
             });
           if (condition)
             return (
@@ -57,6 +58,7 @@ export const FriendsDropContainer = () => {
                 custom={index}
               />
             );
+          else return null;
         })}
     </StyledDropContainer>
   );
