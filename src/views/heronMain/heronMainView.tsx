@@ -20,16 +20,7 @@ const HeronMainView = () => {
         <PrivateMessanger />
         <GlobalMessanger />
       </AppFeatures>
-      <Footer>
-        <button
-          onClick={async () => {
-            await dispatch(logOut);
-            dispatch(clearStore());
-          }}
-        >
-          Logout
-        </button>
-      </Footer>
+      <Footer></Footer>
     </HeronMainHolder>
   );
 };

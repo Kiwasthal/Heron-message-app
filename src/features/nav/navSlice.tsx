@@ -8,6 +8,7 @@ type InitialStateProps = {
   globalChat: boolean;
   friendsElement: boolean;
   themeElement: boolean;
+  settingsElement: boolean;
   friendsModal: boolean;
   chatBar: boolean;
   theme: ThemeType;
@@ -17,6 +18,7 @@ const initialState: InitialStateProps = {
   globalChat: false,
   friendsElement: false,
   themeElement: false,
+  settingsElement: false,
   friendsModal: false,
   chatBar: false,
   theme: defaultTheme,
@@ -46,6 +48,12 @@ const navSlice = createSlice({
     },
     hideThemeDropmenu: state => {
       state.themeElement = false;
+    },
+    showSettingsDropmenu: state => {
+      state.settingsElement = true;
+    },
+    hideSettingsDropmenu: state => {
+      state.settingsElement = false;
     },
     closeAllInterfaces: state => {
       state.globalChat = false;
@@ -99,4 +107,6 @@ export const {
   setThemeLight,
   setThemeSea,
   retrieveLStheme,
+  showSettingsDropmenu,
+  hideSettingsDropmenu,
 } = navSlice.actions;

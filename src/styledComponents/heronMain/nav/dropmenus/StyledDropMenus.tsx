@@ -80,3 +80,57 @@ export const StyledAcceptFriendButton = styled.button`
     transform: scale(1.1);
   }
 `;
+
+export const StyledSettingsCard = styled(motion.div)`
+  background-color: ${props => props.theme.dropmenu.main};
+  align-self: center;
+  width: 90%;
+  height: 10vh;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 60% 40%;
+  padding: 6px;
+  cursor: default;
+`;
+
+type ImageProps = {
+  img: string | null | undefined;
+};
+
+export const SettingsUserImage = styled.div<ImageProps>`
+  background-position: center;
+  justify-self: center;
+  align-self: center;
+  background-image: url(${props => props.img});
+  background-size: contain;
+  grid-area: 1 / 1 / 2 / 2;
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+`;
+
+export const SettingsUserName = styled.div`
+  grid-area: 1 / 2 / 2 / 3;
+  align-self: center;
+  color: ${props => props.theme.text};
+`;
+
+export const SettingsUserEmail = styled.div`
+  grid-area: 2 / 1 / 3 / 3;
+  align-self: center;
+  justify-self: center;
+  color: ${props => props.theme.text};
+`;
+
+export const StyledLogoutButton = styled(motion.button)`
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: ${props => props.theme.text};
+  background-color: ${props => props.theme.dropmenu.main};
+  cursor: pointer;
+  transition: background-color 200ms;
+  &:hover {
+    background-color: ${props => props.theme.dropmenu.hovered};
+  }
+`;
