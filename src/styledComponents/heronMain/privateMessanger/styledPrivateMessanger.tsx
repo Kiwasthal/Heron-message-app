@@ -155,10 +155,22 @@ export const StyledChatBox = styled.div`
 `;
 
 export const StyledPrivateTextarea = styled.textarea`
-  height: 100%;
-  grid-area: 2 / 1 / 3 / 2;
-  background-color: white;
   resize: none;
+  padding: 0px 5px 0px 5px;
+  outline: none;
+  border: 2px solid white;
+  transition: all 200ms ease-in;
+  font-weight: 400;
+  font-size: 16px;
+  :hover {
+    border: 2px solid ${props => props.theme.main.elements};
+  }
+  :active {
+    border: 3px solid ${props => props.theme.main.elements};
+  }
+  :focus {
+    border: 3px double ${props => props.theme.main.elements};
+  }
 `;
 
 export const StyledSendPrivateMessageButton = styled.button`

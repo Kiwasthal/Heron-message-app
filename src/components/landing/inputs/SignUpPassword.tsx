@@ -1,7 +1,7 @@
 import {
   StyledErrorText,
   StyledInput,
-  StyledInputWrapper,
+  StyledSignUpInputWrapper,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
@@ -16,7 +16,7 @@ export const SignUpPasswordInput = () => {
     setUserPassword(e.currentTarget.value);
   const pushPasswordToStore = () => dispatch(getPasswordInput(userPassword));
   return (
-    <StyledInputWrapper>
+    <StyledSignUpInputWrapper>
       <StyledInput
         type="password"
         placeholder="User Password"
@@ -36,6 +36,6 @@ export const SignUpPasswordInput = () => {
           ? 'Password is too weak'
           : null}
       </StyledErrorText>
-    </StyledInputWrapper>
+    </StyledSignUpInputWrapper>
   );
 };

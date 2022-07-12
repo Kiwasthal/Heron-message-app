@@ -1,7 +1,7 @@
 import {
   StyledInput,
-  StyledInputWrapper,
   StyledErrorText,
+  StyledSignUpInputWrapper,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
@@ -17,7 +17,7 @@ export const SignUpConfirmPasswordInput = () => {
   const pushUserNameToStore = () =>
     dispatch(getConfirmationPasswordInput(userConfirmPassword));
   return (
-    <StyledInputWrapper>
+    <StyledSignUpInputWrapper>
       <StyledInput
         custom={1.8}
         type="password"
@@ -37,6 +37,6 @@ export const SignUpConfirmPasswordInput = () => {
           ? "Passwords don't match"
           : null}
       </StyledErrorText>
-    </StyledInputWrapper>
+    </StyledSignUpInputWrapper>
   );
 };

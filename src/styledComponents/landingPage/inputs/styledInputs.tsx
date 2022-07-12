@@ -10,11 +10,24 @@ export const StyledInputWrapper = styled.div`
   width: 100%;
 `;
 
+export const StyledSignUpInputWrapper = styled(StyledInputWrapper)`
+  height: 90%;
+`;
+
 export const StyledInput = styled(motion.input)`
+  outline: none;
+  border: 0px solid black;
   width: 80%;
   height: 100%;
+  padding: 0px 5px 0px 5px;
   ::placeholder {
     font-style: italic;
+  }
+  :hover {
+    border: 1px solid black;
+  }
+  :focus {
+    border: 2px solid ${props => props.theme.main.elements};
   }
 `;
 

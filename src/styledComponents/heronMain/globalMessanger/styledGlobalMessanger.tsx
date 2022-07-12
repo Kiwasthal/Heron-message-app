@@ -67,15 +67,19 @@ export const StyledMessageTextArea = styled.textarea`
   grid-area: 2 / 1 / 3 /2;
   resize: none;
   outline: none;
-  border: 2px solid ${props => props.theme.main.elements};
+  border: 2px solid white;
   transition: all 200ms ease-in;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 8px;
   :hover {
+    border: 2px solid ${props => props.theme.main.elements};
   }
   :active {
-    border: none;
+    border: 3px solid ${props => props.theme.main.elements};
   }
   :focus {
-    outline: none;
+    border: 3px double ${props => props.theme.main.elements};
   }
 `;
 

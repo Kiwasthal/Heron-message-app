@@ -1,7 +1,7 @@
 import {
   StyledInput,
-  StyledInputWrapper,
   StyledErrorText,
+  StyledSignUpInputWrapper,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
@@ -17,7 +17,7 @@ export const SignUpEmailInput = () => {
   const pushUserNameToStore = () => dispatch(getEmailInput(userEmail));
   console.log(errors);
   return (
-    <StyledInputWrapper>
+    <StyledSignUpInputWrapper>
       <StyledInput
         custom={1.4}
         variants={landingElementVariants}
@@ -39,6 +39,6 @@ export const SignUpEmailInput = () => {
           ? 'This email is already in use'
           : null}
       </StyledErrorText>
-    </StyledInputWrapper>
+    </StyledSignUpInputWrapper>
   );
 };

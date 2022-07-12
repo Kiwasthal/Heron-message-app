@@ -1,6 +1,6 @@
 import {
   StyledInput,
-  StyledInputWrapper,
+  StyledSignUpInputWrapper,
   StyledErrorText,
 } from '../../../styledComponents/landingPage/inputs/styledInputs';
 import { useState } from 'react';
@@ -16,7 +16,7 @@ export const SignUpNameInput = () => {
     setUserName(e.currentTarget.value);
   const pushUserNameToStore = () => dispatch(getNameInput(userName));
   return (
-    <StyledInputWrapper>
+    <StyledSignUpInputWrapper>
       <StyledInput
         custom={1.2}
         variants={landingElementVariants}
@@ -31,6 +31,6 @@ export const SignUpNameInput = () => {
       <StyledErrorText>
         {errors === 'username-missing' ? 'Please input a user name' : null}
       </StyledErrorText>
-    </StyledInputWrapper>
+    </StyledSignUpInputWrapper>
   );
 };
