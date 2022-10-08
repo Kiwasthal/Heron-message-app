@@ -14,3 +14,10 @@
 An instant messaging application built with redux toolkit and react firebase hooks.
 
 Check out the client <a href='https://heron-messaging.web.app/'>Here</a>
+
+This Porject was created as the final project of front-end developing path in the Odin Project. The object is creatig a complex application with various technologies. The user can create an account manually or sign via google authorization. Landing on the dashboard, you are greeted with the usual functionalities of a messanging application.
+You can add your friends via email. Accept incoming friend requests, create private chatrooms and join the global chatroom.
+
+### Notes
+
+THe objective of this project is getting familiar with different sorts of technologies working together. Mainly redux and typescript were heavily used. When coming to redux toolkit a custom api was created 'mockick' the firebase api to manage all back end requests. While there are better methods to design a project like this with redux, again the main goal was using most of the framework's funtionalities. Firebase observers and toolkit's mutation were integrated in custom hooks to manage different messaging interfaces.
